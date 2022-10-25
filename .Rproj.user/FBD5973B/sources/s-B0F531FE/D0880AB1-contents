@@ -16,7 +16,7 @@ website:
         href: https://twitter.com/ConnorHanan
     left:
       - icon: rss
-        href: blog.xml
+        href: index.xml
   favicon: ./images/favicon.png
 format:
   html:
