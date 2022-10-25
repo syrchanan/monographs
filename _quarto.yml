@@ -1,0 +1,20 @@
+project:
+  type: website
+
+website:
+  title: "monographs"
+  navbar:
+    right:
+      - blog.qmd
+      - icon: github
+        href: https://github.com/syrchanan
+      - icon: globe
+        href: https://www.connorhanan.com
+      - icon: twitter
+        href: https://twitter.com/ConnorHanan
+  favicon: ./images/favicon.png
+  reader-mode: true
+format:
+  html:
+    theme: lux
+    css: styles.css
