@@ -16,5 +16,14 @@
   },
   "posts/john-hardy-vs-henry/index.qmd": {
     "index.html": "af9b9464"
+  },
+  "posts/temp/index.qmd": {
+    "index.html": "78dce927"
+  },
+  "posts/world-cup/index.qmd": {
+    "index.html": "5d362e8d"
+  },
+  "posts/2022-world-cup/index.qmd": {
+    "index.html": "ff3c71b7"
   }
 }
