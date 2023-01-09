@@ -25,5 +25,11 @@
   },
   "posts/2022-world-cup/index.qmd": {
     "index.html": "ff3c71b7"
+  },
+  "posts/drafts/index.qmd": {
+    "index.html": "153e119c"
+  },
+  "posts/2022-ga-runoff/index.qmd": {
+    "index.html": "68be4b97"
   }
 }
