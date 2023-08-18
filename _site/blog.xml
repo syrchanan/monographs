@@ -10,7 +10,71 @@
 <atom:link href="https://quartopub.com/sites/syrchanan/monographs/blog.xml" rel="self" type="application/rss+xml"/>
 <description>A collection of various short studies</description>
 <generator>quarto-1.2.242</generator>
-<lastBuildDate>Sun, 11 Dec 2022 08:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 08 Apr 2023 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>Cable News Coverage of the NY Trump Arraignment</title>
+  <link>https://quartopub.com/sites/syrchanan/monographs/posts/2023-trump-arraignment-ny/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<section id="the-indictment-arraignment" class="level3">
+<h3 class="anchored" data-anchor-id="the-indictment-arraignment">The Indictment &amp; Arraignment</h3>
+<p>During Fmr. Pres.&nbsp;Donald Trump’s initial bid for the White House in 2016, he allegedly paid “hush money” to Stormy Daniels so as to prevent the affair story from leaking to the press. In doing so, it could be considered a federal crime - violation of campaign finance rules, since the entire alleged effort was in support of his campaign.</p>
+<p>Specifically, he faced 34 counts of falsifying business records in the first degree. Of course, this is huge news, and as such, all the major news networks were following the indictment and arrest of a former president. During the legal process, no cameras were allowed inside the courtroom, so most of the networks filled the air with discussion and analysis; however, each network’s coverage was not at all the same.</p>
+</section>
+<section id="the-stratification-of-cable-news" class="level3">
+<h3 class="anchored" data-anchor-id="the-stratification-of-cable-news">The Stratification of Cable News</h3>
+<p>Legal proceedings can be very dry, and an overall extremely boring affair. Not to mention federal trials, which disallow cameras in the courtrooms - so there is quite literally nothing to see.</p>
+<p>As alluded to above, to fill the air, news networks had to turn to analysts, experts and pundits. Of course, these folks all have different backgrounds, areas of interest - and perhaps most importantly, differing political slants. Shortly, we will see how the coverage taken by the big three cable networks (CNN, MSNBC and FOX News) all covered the same events quite differently.</p>
+<p>However, the differences between cable news networks isn’t really news in and of itself - just about anyone can go on and on about the partisan news media and its many shortcomings. This is true, to some extent; however, there is an indisputable value of news coverage, regardless of the slant it may have.</p>
+<p>If a news source is political, all that means is different varieties of coverage ought to be consumed to account for any shortcoming that one network or source may present. That said - enough of the philosophy of news networks and strategy - let’s dive into the similarities and differences in cable news network coverage of the NY Trump Arraignment.</p>
+</section>
+<section id="arraignment-coverage" class="level3">
+<h3 class="anchored" data-anchor-id="arraignment-coverage">Arraignment Coverage</h3>
+<p>Certain words that are used can be very revealing about a network’s coverage - especially if they differ greatly from the other networks.</p>
+<p>In my analysis, I aggregated all of the closed captions from CNN, FOX and MSNBC between the hours of 7 p.m. and 3 a.m. ET. In the industry, this time period is often referred to as Sales Prime, which is the block of coverage which sees the largest audiences across the board (it extends late in order to capture the West Coast too).</p>
+<p>As a reminder, for each 10-minute block (since that is the granularity of data provided by the GDELT Project), any time the word “Trump” was said, all the words in that block were included. This way, the words most commonly said around “Trump” will be considered. These adjacent words were then lemmatized (cleaned and grouped) and fuzzily combined across networks to find the 200 most common mentions.</p>
+<p>The top words per network are plotted below:</p>
+<p><img src="https://quartopub.com/sites/syrchanan/monographs/posts/2023-trump-arraignment-ny/Trump_indictment_4-3-23.svg" class="img-fluid"></p>
+</section>
+<section id="so-what-does-this-mean" class="level3">
+<h3 class="anchored" data-anchor-id="so-what-does-this-mean">So what does this mean?</h3>
+<p>Let’s start at the top, and work our way around clockwise, beginning with:</p>
+<section id="fox-news" class="level4">
+<h4 class="anchored" data-anchor-id="fox-news">Fox News</h4>
+<p>The words clustering towards the top of this section do not differ greatly from something you may see on any other night. This leads me to believe that the coverage during prime time was not nearly as specialized on Fox News as it was on the other two networks.</p>
+<p>At the very top of the list are two anchor names (<strong>Jesse</strong> Waters and <strong>Sean</strong> Hannity), but also Joe <strong>Biden</strong>. Clearly, much of the coverage that involved Trump also involved references to the current president. It is a little hard to tell the context surrounding some of these uses; however, it is quite clear that comparisons were being made between the two.</p>
+<p>Based on other events happening around the same time, I would suggest that most of the coverage on Fox News revolved around the failings of the current president, as opposed to the alleged crimes of the former one.</p>
+</section>
+<section id="msnbc" class="level4">
+<h4 class="anchored" data-anchor-id="msnbc">MSNBC</h4>
+<p>MSNBC’s coverage was much more directed around the actual arraignment and indictment of Fmr. Pres.&nbsp;Trump; however, the most common word was “Wisconsin” - which was a totally different story.</p>
+<p>It just so happened that the day following the arraignment of Trump was a state supreme court election in Wisconsin - which could have huge impacts down the line for the purple state. You can even see that the word “election” is far down and right towards the MSNBC corner, which makes total sense. That said, MSNBC’s coverage of the upcoming election must’ve been deeply tied to Trump, since the state was mentioned so often in tandem with the former president’s name.</p>
+<p>Outside of the Wisconsin saga, there were many oblique references to the arraignment, including “Manhattan” (site of the courthouse), “judge”, “trial”, etc. Most interestingly is the word “Republican”, which is drifting towards the side of MSNBC, indicating that their coverage tended to be slightly more partisan than that of CNN, which also split usage of the word.</p>
+</section>
+<section id="cnn" class="level4">
+<h4 class="anchored" data-anchor-id="cnn">CNN</h4>
+<p>Similar to MSNBC, CNN’s coverage was largely focused on the arraignment itself. Most unique is the word “Tacopina”, which is the name of one of Trump’s lawyers. This speaks to the angle of coverage - where MSNBC might have covered the generalities of the arraignment, whereas CNN dove in the specifics of the legal team, arraignment process, etc.</p>
+<p>Additionally, other top unique words include “CNN” and “team”, which indicates a definite focus on live, team coverage of the event. This lines up with what I already know of the network - it prides itself on breaking news and live coverage.</p>
+<p>Other than the team-focused words, CNN’s coverage largely matches up with that of MSNBC - which doesn’t come as all that much of a surprise. After all, both have largely democratic leaning audiences (though, on aggregate, MSNBC does tend to drift farther left).</p>
+<hr>
+<p>Overall, the coverage was really divided into two camps: arraignment-related (CNN, MSNBC) and non-arraignment-related (MSNBC, Fox News). MSNBC straddles the line - both focusing on the arraignment as well as the Wisconsin election.</p>
+<p>The fewer words that are clustered around the center, the more stratified the coverage has become. Hopefully, as we move forward with the trial, the words that the cable news networks use to describe Trump and his legal proceedings can re-coalesce around the center of the triangle - indicating a return to normalized coverage.</p>
+<p>-CH</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>news</category>
+  <category>analysis</category>
+  <category>R</category>
+  <guid>https://quartopub.com/sites/syrchanan/monographs/posts/2023-trump-arraignment-ny/index.html</guid>
+  <pubDate>Sat, 08 Apr 2023 07:00:00 GMT</pubDate>
+  <media:content url="https://quartopub.com/sites/syrchanan/monographs/posts/2023-trump-arraignment-ny/Trump_indictment_4-3-23.svg" medium="image" type="image/svg+xml"/>
+</item>
 <item>
   <title>Cable News Coverage of the Georgia Runoffs</title>
   <link>https://quartopub.com/sites/syrchanan/monographs/posts/2022-ga-runoff/index.html</link>
@@ -67,85 +131,6 @@
   <guid>https://quartopub.com/sites/syrchanan/monographs/posts/2022-ga-runoff/index.html</guid>
   <pubDate>Sun, 11 Dec 2022 08:00:00 GMT</pubDate>
   <media:content url="https://quartopub.com/sites/syrchanan/monographs/posts/2022-ga-runoff/GA_runoff_plot.png" medium="image" type="image/png"/>
-</item>
-<item>
-  <title>2022 World Cup Picks</title>
-  <link>https://quartopub.com/sites/syrchanan/monographs/posts/2022-world-cup/index.html</link>
-  <description><![CDATA[ 
-
-
-
-<section id="background" class="level3">
-<h3 class="anchored" data-anchor-id="background">Background</h3>
-<p>First and foremost, I have to make it clear - I know very little of the international soccer scene.</p>
-<p>That said, I have constructed a bracket of my 2022 World Cup picks.</p>
-<p>Without further ado, here are my picks:</p>
-<hr>
-</section>
-<section id="group-stage" class="level3">
-<h3 class="anchored" data-anchor-id="group-stage">Group Stage</h3>
-<p><img src="https://quartopub.com/sites/syrchanan/monographs/posts/2022-world-cup/group_stage.png" class="img-fluid"></p>
-<p>There isn’t much rhyme or reason as to my picks here - they are purely based on which teams sound good. I’ll discuss a few of the picks, but for the most part, just know they are fairly random in nature.</p>
-<hr>
-<section id="group-a" class="level4">
-<h4 class="anchored" data-anchor-id="group-a">Group A</h4>
-<p>I like to think tall folks are good at soccer, thus the Netherlands in the 1 slot.</p>
-<p>I also gave the benefit of the doubt to the hosts, which is why they are not last in their group.</p>
-<hr>
-</section>
-<section id="group-b" class="level4">
-<h4 class="anchored" data-anchor-id="group-b">Group B</h4>
-<p>IT’S COMING (almost all the way) HOME!</p>
-<p>Followed closely by the US because I hear they might be somewhat decent this year - more on that later.</p>
-<hr>
-</section>
-<section id="groups-e-and-g" class="level4">
-<h4 class="anchored" data-anchor-id="groups-e-and-g">Groups E and G</h4>
-<p>I like the idea of a Brazil v. Germany rematch in the elimination rounds, so I wanted them both to win out to be on the same side of the bracket.</p>
-<hr>
-</section>
-</section>
-<section id="elimination-rounds" class="level3">
-<h3 class="anchored" data-anchor-id="elimination-rounds">Elimination Rounds</h3>
-<section id="top-half-of-the-bracket" class="level4">
-<h4 class="anchored" data-anchor-id="top-half-of-the-bracket">Top Half of the Bracket</h4>
-<p><img src="https://quartopub.com/sites/syrchanan/monographs/posts/2022-world-cup/top_half.png" class="img-fluid" style="width:50.0%"></p>
-<p>I have heard that the US is looking the best it has ever been in recent years - which I why I have them picked in a gutsy win over the Netherlands.</p>
-<p>In the other match, Argentina seems like they are perennially at least in the discussion, so I gave them the nod.</p>
-<p>Between the US and Argentina - I unfortunately think the luck will run out for the United States.</p>
-<p>In the other two games, as I mentioned before, I would love to see a rematch between Germany and Brazil, so they both make it through to play against one another. In that grudge match - I like Brazil this time.</p>
-<hr>
-</section>
-<section id="bottom-half-of-the-bracket" class="level4">
-<h4 class="anchored" data-anchor-id="bottom-half-of-the-bracket">Bottom Half of the Bracket</h4>
-<p><img src="https://quartopub.com/sites/syrchanan/monographs/posts/2022-world-cup/bottom_half.png" class="img-fluid" style="width:50.0%"></p>
-<p>In the other side, I still would like England to advance, as well as France. They both are good Euro teams (I think), and ages ago they were rivals (I’m talking like Joan of Arc time).</p>
-<p>Croatia I think might be challenged by Spain, but in the end, the Croatians will advance through the round to meet Portugal (who makes it past CMR in their match up).</p>
-<p>Croatia ought to carry the win in the next round - at least, I would like to see them do so, for no other reason than they are better in water polo than Spain.</p>
-<hr>
-</section>
-</section>
-<section id="semis-and-finals" class="level3">
-<h3 class="anchored" data-anchor-id="semis-and-finals">Semis and Finals</h3>
-<p><img src="https://quartopub.com/sites/syrchanan/monographs/posts/2022-world-cup/last_two.png" class="img-fluid" style="width:50.0%"></p>
-<p>In the first semi-final, it’s a match up between two classic teams: Argentina and Brazil. I think that if Brazil makes it to this round through Germany, they will be able to carry the momentum through and take down Argentina.</p>
-<p>On the other side - I still have a good feeling about Croatia. As much as I would like to see England take it all the way, I think that they won’t be able to stop the Croatian onslaught.</p>
-<p>And finally… in the finals…</p>
-<p>Croatia! I mean what is not to like?! Their fans even wear water polo caps at their matches!</p>
-<hr>
-<p>There you have it! My picks for the 2022 World Cup. We’ll have to wait and see how things land.</p>
-<p>-CH</p>
-
-
-</section>
-
- ]]></description>
-  <category>sports</category>
-  <category>playoffs</category>
-  <category>picks</category>
-  <guid>https://quartopub.com/sites/syrchanan/monographs/posts/2022-world-cup/index.html</guid>
-  <pubDate>Tue, 15 Nov 2022 08:00:00 GMT</pubDate>
-  <media:content url="https://quartopub.com/sites/syrchanan/monographs/posts/2022-world-cup/group_stage.png" medium="image" type="image/png" height="91" width="144"/>
 </item>
 <item>
   <title>John Hardy vs. John Henry</title>
