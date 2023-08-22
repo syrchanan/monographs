@@ -4,6 +4,9 @@ image: ./images/about.jpg
 about:
   template: jolla
   links:
+    - icon: stickies
+      text: Posts
+      href: blog.qmd
     - icon: twitter
       text: Twitter
       href: https://twitter.com/ConnorHanan
@@ -15,6 +18,6 @@ about:
       href: https://github.com/syrchanan
 ---
 
-This blog is a collection of various short studies on topics that interest me.  
+This [blog](blog.qmd) is a collection of various short studies on topics that interest me.  
 
 For further information about me, please visit my website, linked below.
