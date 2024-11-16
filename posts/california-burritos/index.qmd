@@ -1,12 +1,12 @@
 ---
 title: "The Definitive Ranking of California Burritos"
 subtitle: "The Best and Where to Get Them"
-date: "2022-10-31"
-#image: 
+date: "2023-09-10"
+image: "./vallartas.jfif"
 categories:
   - food
   - ranking
-draft: true
+draft: false
 ---
 
 ### What Are They?
@@ -23,11 +23,17 @@ It must also be noted that a classic California burrito will have carne asada as
 
 All that to say, there are very important things that can separate one California burrito from another.
 
-Without further ado, here are my rankings for best California burritos I have ever had:  
+Without further ado, here are my rankings for best California burritos I have ever had:
 
-1.    Alejandro's (Carlsbad, CA) - CLOSED
-1.    Vallarta's (Carlsbad, CA)
-1.    The Taco Stand (Encinitas, CA)
-1.    Electric Burrito (New York City, NY)
-1.    Roberto's (Carlsbad, CA)
-1.    Cessy's (Carlsbad, CA) - CLOSED
+1.  Alejandro's (Carlsbad, CA) - CLOSED
+2.  Vallarta's (Carlsbad, CA)
+3.  The Taco Stand (Encinitas, CA)
+4.  Electric Burrito (New York City, NY)
+5.  Roberto's (Carlsbad, CA)
+6.  Cessy's (Carlsbad, CA) - CLOSED
+
+------------------------------------------------------------------------
+
+If you ever get a chance, seek out one of the above locations - or even make one yourself. I can all but guarantee that you won't be disappointed.
+
+-CH
