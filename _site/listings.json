@@ -2,11 +2,12 @@
   {
     "listing": "/blog.html",
     "items": [
-      "/posts/baker-zouave/index.html",
-      "/posts/california-burritos/index.html",
-      "/posts/2023-trump-arraignment-ny/index.html",
-      "/posts/2022-ga-runoff/index.html",
-      "/posts/john-hardy-vs-henry/index.html"
+      "/posts/20241115-whats-next/index.html",
+      "/posts/20230917-baker-zouave/index.html",
+      "/posts/20230910-california-burritos/index.html",
+      "/posts/20230408-trump-arraignment-ny/index.html",
+      "/posts/20221211-ga-runoff/index.html",
+      "/posts/20221024-john-hardy-vs-henry/index.html"
     ]
   }
 ]
