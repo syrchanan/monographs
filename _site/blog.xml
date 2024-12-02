@@ -6,14 +6,601 @@
       version="2.0">
 <channel>
 <title>monographs</title>
-<link>https://quartopub.com/sites/syrchanan/monographs/blog.html</link>
-<atom:link href="https://quartopub.com/sites/syrchanan/monographs/blog.xml" rel="self" type="application/rss+xml"/>
+<link>https://syrchanan.quarto.pub/monographs/blog.html</link>
+<atom:link href="https://syrchanan.quarto.pub/monographs/blog.xml" rel="self" type="application/rss+xml"/>
 <description>A collection of various short studies</description>
 <generator>quarto-1.6.36</generator>
-<lastBuildDate>Fri, 15 Nov 2024 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 01 Dec 2024 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>2024 Day 1: Historian Hysteria</title>
+  <link>https://syrchanan.quarto.pub/monographs/posts/20241201-advent-of-code/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Let’s get started with <a href="https://adventofcode.com/2024/day/1">day 1</a>!</p>
+<p>Today, after reading the problem, I feel like OJS will be easiest to handle all of these lists, so without further ado, let’s begin:</p>
+<section id="part-1" class="level3">
+<h3 class="anchored" data-anchor-id="part-1">Part 1</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" data-startfrom="1032" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1031;"><span id="cb1-1032">{</span>
+<span id="cb1-1033">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> parsed <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> raw<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">split</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>)</span>
+<span id="cb1-1034">      <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> {</span>
+<span id="cb1-1035">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> d<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">trimStart</span>()</span>
+<span id="cb1-1036">                <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">replace</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\s+</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'|'</span>)</span>
+<span id="cb1-1037">                <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">split</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'|'</span>)</span>
+<span id="cb1-1038">                <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>d)</span>
+<span id="cb1-1039">      })</span>
+<span id="cb1-1040"></span>
+<span id="cb1-1041">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> parsed<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>((d<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> i<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> me) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> {</span>
+<span id="cb1-1042">      <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> diff <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> me<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(elem <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> elem[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>])<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sort</span>()[i] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> </span>
+<span id="cb1-1043">                   me<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(elem <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> elem[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>])<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sort</span>()[i]</span>
+<span id="cb1-1044">      <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> diff <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">?</span> diff <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> diff</span>
+<span id="cb1-1045">    })<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">reduce</span>((nxt<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> acc) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> nxt <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> acc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb1-1046">}</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>First we need to parse out the input. I split on each newline, and used some regex to replace all the extra whitespace between the numbers with a delimeter, making splitting it into arrays quite simple.</p>
+<p>However, we need to map across the arrays and find the paired difference between the elements - after sorting - which I chose to do in one step using the <code>this</code> property of arrays when mapping.</p>
+<p>A simple conditional brings us home to our first star of the year!</p>
+<p>Just for fun, let’s do the same in R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">raw <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_split</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">n"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-3">  .[[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]] <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(str_squish) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_split</span>(.x, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" "</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb2-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list_flatten</span>() <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-&gt;</span> parsed</span>
+<span id="cb2-7"></span>
+<span id="cb2-8">parsed <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(.x[[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]])) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list_c</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sort</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tibble</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">part_1 =</span> .) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-13">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bind_cols</span>({</span>
+<span id="cb2-14">    parsed <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-15">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(.x[[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>]])) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-16">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list_c</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-17">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sort</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-18">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tibble</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">part_2 =</span> .)</span>
+<span id="cb2-19">  }) <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-&gt;</span> clean_data</span>
+<span id="cb2-20"></span>
+<span id="cb2-21">clean_data <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-22">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">diff =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">abs</span>(part_2 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> part_1)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-23">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">total =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(diff)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-24">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pull</span>(total)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2164381</code></pre>
+</div>
+</div>
+<p>Similar strategy as the OJS - parse the input and map across each set separately. However, this time, we’ll be taking advantage of the dataframe system in R, doing our calculations across columns, since the two lists are the same lengths.</p>
+<p>⭐</p>
+</section>
+<section id="part-2" class="level3">
+<h3 class="anchored" data-anchor-id="part-2">Part 2</h3>
+<p>So for this part, we are tasked with counting the appearances of the first number list in the second, then multiplying across:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" data-startfrom="1097" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1096;"><span id="cb4-1097">{</span>
+<span id="cb4-1098">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> parsed <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> raw<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">split</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>)</span>
+<span id="cb4-1099">      <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> {</span>
+<span id="cb4-1100">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> d<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">trimStart</span>()</span>
+<span id="cb4-1101">                <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">replace</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\s+</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'|'</span>)</span>
+<span id="cb4-1102">                <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">split</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'|'</span>)</span>
+<span id="cb4-1103">                <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>d)</span>
+<span id="cb4-1104">      })</span>
+<span id="cb4-1105">  </span>
+<span id="cb4-1106">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> part_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> parsed<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> d[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>])</span>
+<span id="cb4-1107">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> part_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> parsed<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> d[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>])</span>
+<span id="cb4-1108">  </span>
+<span id="cb4-1109">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> part_1<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">reduce</span>((acc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> nxt) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> {</span>
+<span id="cb4-1110">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> acc <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> nxt <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> ( part_2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(elem <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> elem <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">===</span> nxt)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length</span> )</span>
+<span id="cb4-1111">  }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb4-1112">}</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>Not too bad of a solution, just copied/pasted the parsing from above, and actually split it into two arrays now instead of doing it all at once. That way, a basic accumulation across the first array (which we are treating as the ‘keys’ in this case), nets us our answer. Another way to do it would be create an object from list #2, with each number as a key and each count as a value, which would eliminate the repeating lookups.</p>
+<p>And again in R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">parsed <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(.x[[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]])) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list_c</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sort</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tibble</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">part_1 =</span> .) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">left_join</span>({</span>
+<span id="cb5-7">    parsed <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-8">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(.x[[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>]])) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-9">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list_c</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-10">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sort</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-11">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tibble</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">part_2 =</span> .) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-12">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">count</span>(part_2)</span>
+<span id="cb5-13">  }, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">join_by</span>(part_1 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> part_2)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-14"></span>
+<span id="cb5-15">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">prod =</span> part_1 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> n) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-16">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">total =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(prod, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> T)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-17">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pull</span>(total)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20719933</code></pre>
+</div>
+</div>
+<p>Easy enough – just need to join the groups together into a dataframe rather than binding columns straight across. This way, the summarised totals will dupe themselves as needed per number.</p>
+<p>⭐</p>
+<hr>
+<p>Not too hard for day 1…</p>
+<p>-CH</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Advent of Code</category>
+  <category>OJS</category>
+  <category>R</category>
+  <guid>https://syrchanan.quarto.pub/monographs/posts/20241201-advent-of-code/</guid>
+  <pubDate>Sun, 01 Dec 2024 05:00:00 GMT</pubDate>
+</item>
 <item>
   <title>What’s Next?</title>
-  <link>https://quartopub.com/sites/syrchanan/monographs/posts/20241115-whats-next/</link>
+  <link>https://syrchanan.quarto.pub/monographs/posts/20241115-whats-next/</link>
   <description><![CDATA[ 
 
 
@@ -37,14 +624,14 @@
 </section>
 
  ]]></description>
-  <category>update</category>
-  <category>advent of code</category>
-  <guid>https://quartopub.com/sites/syrchanan/monographs/posts/20241115-whats-next/</guid>
+  <category>Update</category>
+  <category>Advent of Code</category>
+  <guid>https://syrchanan.quarto.pub/monographs/posts/20241115-whats-next/</guid>
   <pubDate>Fri, 15 Nov 2024 05:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Baker’s Guard Zouaves</title>
-  <link>https://quartopub.com/sites/syrchanan/monographs/posts/20230917-baker-zouave/</link>
+  <link>https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/</link>
   <description><![CDATA[ 
 
 
@@ -63,12 +650,12 @@
 <h3 class="anchored" data-anchor-id="zouaves-in-the-us">Zouaves in the US</h3>
 <p>As the Zouaves gained fame in the French army during their conquest of Africa, they became renowned as an elite fighting corps. Word quickly spread, through observers and military officials alike - soon everyone was talking about the fearsome Zouaves.</p>
 <p>This included Elmer E. Ellsworth, an enterprising individual who obtained a Zouave training manual from his friend, who was a surgeon in the French North-African Zouave units. He then formed a touring company, which performed light infantry drills all over the nation, drumming up even more interest in these “foreign” soldiers.</p>
-<p><img src="https://quartopub.com/sites/syrchanan/monographs/posts/20230917-baker-zouave/ElmerEllsworthphoto01.jpg" class="img-fluid"></p>
+<p><img src="https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/ElmerEllsworthphoto01.jpg" class="img-fluid"></p>
 <p>When the Civil War broke out, multiple units of Zouaves were formed, almost exclusively as militia units. Ellsworth’s own touring company became the 11th NY “Fire Zouaves”, on account of their red-trimmed uniforms.</p>
 <p>Zouave uniforms were very similar to those of the French-Algerian troops: fez, baggy chasseur trousers, a shell jacket (which is open-fronted), jambieres (or gaiters), etc. These styles were often trimmed in red, both after the 11th NY and the original Zouaves - though they also had many swirls of embroidery as embellishments.</p>
-<p><img src="https://quartopub.com/sites/syrchanan/monographs/posts/20230917-baker-zouave/zouave.jpg" class="img-fluid"></p>
+<p><img src="https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/zouave.jpg" class="img-fluid"></p>
 <p>Fashion of the US during this time was also influenced by the famed Zouaves - tales of their exploits spread throughout the press, and many people wanted to dress like them as a result. Of course, men’s fashion was taken in with the designs, but more surprising was women’s fashion was as well. Many open-front Zouave-style jackets were worn as outerwear (as seen below), and the swirling, bold styles were also adopted into formal wear.</p>
-<p><img src="https://quartopub.com/sites/syrchanan/monographs/posts/20230917-baker-zouave/zouave_womens.jpg" class="img-fluid"></p>
+<p><img src="https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/zouave_womens.jpg" class="img-fluid"></p>
 </section>
 <section id="bakers-guard-zouaves" class="level3">
 <h3 class="anchored" data-anchor-id="bakers-guard-zouaves">Baker’s Guard Zouaves</h3>
@@ -77,7 +664,7 @@
 <p>Company K was raised from volunteers in Philadelphia by Cpt. William Davis, who was reported in the newspaper to be from the “gallant New York 69th”, another famed Irish regiment (from which the 69th Pennsylvania took it’s name).</p>
 <p>The two regiments were named the “Baker’s Guard” Zouaves after Col. Edward D. Baker, who led the Philadelphia Brigade (of which the 69th Pennsylvania was assigned to).</p>
 <p>These two companies, in the Zouave fashion, also had an extremely distinctive uniform. Similar to those of the 11th NY Fire Zouaves, and the 72nd and 95th Pennsylvania regiments of Zouaves, the Baker’s Guard Zouaves all wore the shortened shell jacket, vest, chasseur trousers, and jambieres; however, there were slight differences. As the rest of the units were trimmed in red, the Baker’s Guard uniforms were all trimmed in green, symbolic of their predominantly Irish heritage. Also, they opted to wear a kepi hat, also trimmed in green - rather than the traditional fez.</p>
-<p><img src="https://quartopub.com/sites/syrchanan/monographs/posts/20230917-baker-zouave/baker_zouave.png" class="img-fluid"></p>
+<p><img src="https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/baker_zouave.png" class="img-fluid"></p>
 <p>With such a different uniform, in the midst of war, one might assume they were only privately purchased - however, there are records of reissue:</p>
 <blockquote class="blockquote">
 <p>This uniform was approved for reissue by the federal quartermasters in April of 1862, when Lieutenant Colonel George H. Crossman, Deputy Quartermaster at Philadelphia approved the manufacture of 160 uniforms “of the same pattern” which were known by the manufacturing firms of Rock &amp; Wilson and Jacob Reed.</p>
@@ -95,16 +682,16 @@
 </section>
 
  ]]></description>
-  <category>civil war</category>
-  <category>reenacting</category>
-  <category>history</category>
-  <guid>https://quartopub.com/sites/syrchanan/monographs/posts/20230917-baker-zouave/</guid>
+  <category>Civil War</category>
+  <category>Reenacting</category>
+  <category>History</category>
+  <guid>https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/</guid>
   <pubDate>Sun, 17 Sep 2023 04:00:00 GMT</pubDate>
-  <media:content url="https://quartopub.com/sites/syrchanan/monographs/posts/20230917-baker-zouave/ElmerEllsworthphoto01.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/ElmerEllsworthphoto01.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>The Definitive Ranking of California Burritos</title>
-  <link>https://quartopub.com/sites/syrchanan/monographs/posts/20230910-california-burritos/</link>
+  <link>https://syrchanan.quarto.pub/monographs/posts/20230910-california-burritos/</link>
   <description><![CDATA[ 
 
 
@@ -137,15 +724,15 @@
 </section>
 
  ]]></description>
-  <category>food</category>
-  <category>ranking</category>
-  <guid>https://quartopub.com/sites/syrchanan/monographs/posts/20230910-california-burritos/</guid>
+  <category>Food</category>
+  <category>Ranking</category>
+  <guid>https://syrchanan.quarto.pub/monographs/posts/20230910-california-burritos/</guid>
   <pubDate>Sun, 10 Sep 2023 04:00:00 GMT</pubDate>
-  <media:content url="https://quartopub.com/sites/syrchanan/monographs/posts/20230910-california-burritos/vallartas.jfif" medium="image" type="image/jpeg"/>
+  <media:content url="https://syrchanan.quarto.pub/monographs/posts/20230910-california-burritos/vallartas.jfif" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Cable News Coverage of the NY Trump Arraignment</title>
-  <link>https://quartopub.com/sites/syrchanan/monographs/posts/20230408-trump-arraignment-ny/</link>
+  <link>https://syrchanan.quarto.pub/monographs/posts/20230408-trump-arraignment-ny/</link>
   <description><![CDATA[ 
 
 
@@ -169,7 +756,7 @@
 <p>In my analysis, I aggregated all of the closed captions from CNN, FOX and MSNBC between the hours of 7 p.m. and 3 a.m. ET. In the industry, this time period is often referred to as Sales Prime, which is the block of coverage which sees the largest audiences across the board (it extends late in order to capture the West Coast too).</p>
 <p>As a reminder, for each 10-minute block (since that is the granularity of data provided by the GDELT Project), any time the word “Trump” was said, all the words in that block were included. This way, the words most commonly said around “Trump” will be considered. These adjacent words were then lemmatized (cleaned and grouped) and fuzzily combined across networks to find the 200 most common mentions.</p>
 <p>The top words per network are plotted below:</p>
-<p><img src="https://quartopub.com/sites/syrchanan/monographs/posts/20230408-trump-arraignment-ny/Trump_indictment_4-3-23.svg" class="img-fluid"></p>
+<p><img src="https://syrchanan.quarto.pub/monographs/posts/20230408-trump-arraignment-ny/Trump_indictment_4-3-23.svg" class="img-fluid"></p>
 </section>
 <section id="so-what-does-this-mean" class="level3">
 <h3 class="anchored" data-anchor-id="so-what-does-this-mean">So what does this mean?</h3>
@@ -201,16 +788,16 @@
 </section>
 
  ]]></description>
-  <category>news</category>
-  <category>analysis</category>
+  <category>News</category>
+  <category>Analysis</category>
   <category>R</category>
-  <guid>https://quartopub.com/sites/syrchanan/monographs/posts/20230408-trump-arraignment-ny/</guid>
+  <guid>https://syrchanan.quarto.pub/monographs/posts/20230408-trump-arraignment-ny/</guid>
   <pubDate>Sat, 08 Apr 2023 04:00:00 GMT</pubDate>
-  <media:content url="https://quartopub.com/sites/syrchanan/monographs/posts/20230408-trump-arraignment-ny/Trump_indictment_4-3-23.svg" medium="image" type="image/svg+xml"/>
+  <media:content url="https://syrchanan.quarto.pub/monographs/posts/20230408-trump-arraignment-ny/Trump_indictment_4-3-23.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>Cable News Coverage of the Georgia Runoffs</title>
-  <link>https://quartopub.com/sites/syrchanan/monographs/posts/20221211-ga-runoff/</link>
+  <link>https://syrchanan.quarto.pub/monographs/posts/20221211-ga-runoff/</link>
   <description><![CDATA[ 
 
 
@@ -235,7 +822,7 @@
 <p>For each 10-minute block (since that is the granularity of data provided by the GDELT Project), any time the word “election” was said, all the words in that block were included. This way, the words most commonly said around “election” will be considered.</p>
 <p>These adjacent words were then lemmatized (cleaned and grouped) and fuzzily combined across networks to find the 200 most common mentions.</p>
 <p>The top words per network are plotted below:</p>
-<p><img src="https://quartopub.com/sites/syrchanan/monographs/posts/20221211-ga-runoff/GA_runoff_plot.svg" class="img-fluid"></p>
+<p><img src="https://syrchanan.quarto.pub/monographs/posts/20221211-ga-runoff/GA_runoff_plot.svg" class="img-fluid"></p>
 </section>
 <section id="so-what-does-this-mean" class="level3">
 <h3 class="anchored" data-anchor-id="so-what-does-this-mean">So what does this mean?</h3>
@@ -259,16 +846,16 @@
 <li id="fn1"><p><a href="https://www.mediaite.com/daily-ratings/cable-news-ratings-tuesday-december-6-cnn-and-msnbc-see-big-boost-for-coverage-of-georgia-election/">“Mediaite Cable News Ratings”</a>↩︎</p></li>
 </ol>
 </section></div> ]]></description>
-  <category>news</category>
-  <category>analysis</category>
+  <category>News</category>
+  <category>Analysis</category>
   <category>R</category>
-  <guid>https://quartopub.com/sites/syrchanan/monographs/posts/20221211-ga-runoff/</guid>
+  <guid>https://syrchanan.quarto.pub/monographs/posts/20221211-ga-runoff/</guid>
   <pubDate>Sun, 11 Dec 2022 05:00:00 GMT</pubDate>
-  <media:content url="https://quartopub.com/sites/syrchanan/monographs/posts/20221211-ga-runoff/GA_runoff_plot.png" medium="image" type="image/png"/>
+  <media:content url="https://syrchanan.quarto.pub/monographs/posts/20221211-ga-runoff/GA_runoff_plot.png" medium="image" type="image/png"/>
 </item>
 <item>
   <title>John Hardy vs. John Henry</title>
-  <link>https://quartopub.com/sites/syrchanan/monographs/posts/20221024-john-hardy-vs-henry/</link>
+  <link>https://syrchanan.quarto.pub/monographs/posts/20221024-john-hardy-vs-henry/</link>
   <description><![CDATA[ 
 
 
@@ -276,7 +863,7 @@
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://quartopub.com/sites/syrchanan/monographs/posts/20221024-john-hardy-vs-henry/hardy-hanging.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="John Hardy on the gallows in WV, circa 1894."></p>
+<p><img src="https://syrchanan.quarto.pub/monographs/posts/20221024-john-hardy-vs-henry/hardy-hanging.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="John Hardy on the gallows in WV, circa 1894."></p>
 </figure>
 </div>
 <section id="the-ballads" class="level3">
@@ -345,11 +932,11 @@
 <li id="fn7"><p><a href="https://en.m.wikisource.org/wiki/John_Hardy">“John Hardy” (1919) by John Harrington Cox</a>.↩︎</p></li>
 </ol>
 </section></div> ]]></description>
-  <category>music</category>
-  <category>history</category>
-  <guid>https://quartopub.com/sites/syrchanan/monographs/posts/20221024-john-hardy-vs-henry/</guid>
+  <category>Music</category>
+  <category>History</category>
+  <guid>https://syrchanan.quarto.pub/monographs/posts/20221024-john-hardy-vs-henry/</guid>
   <pubDate>Mon, 24 Oct 2022 04:00:00 GMT</pubDate>
-  <media:content url="https://quartopub.com/sites/syrchanan/monographs/posts/20221024-john-hardy-vs-henry/hardy-hanging.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://syrchanan.quarto.pub/monographs/posts/20221024-john-hardy-vs-henry/hardy-hanging.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>

@@ -4,8 +4,8 @@ subtitle: "A deep dive in content analysis"
 date: "2022-12-11"
 image: ./GA_runoff_plot.png
 categories:
-  - news
-  - analysis
+  - News
+  - Analysis
   - R
 ---
 

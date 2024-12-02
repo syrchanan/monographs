@@ -4,8 +4,8 @@ subtitle: "A deep dive in content analysis"
 date: "2023-04-08"
 image: "./Trump_indictment_4-3-23.svg"
 categories:
-  - news
-  - analysis
+  - News
+  - Analysis
   - R
 ---
 

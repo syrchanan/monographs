@@ -4,9 +4,9 @@ subtitle: "The Irish Skirmishers"
 date: "2023-09-17"
 image: "./ElmerEllsworthphoto01.jpg"
 categories:
-  - civil war
-  - reenacting
-  - history
+  - Civil War
+  - Reenacting
+  - History
 draft: false
 ---
 

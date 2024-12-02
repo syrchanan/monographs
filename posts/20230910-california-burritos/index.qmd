@@ -4,8 +4,8 @@ subtitle: "The Best and Where to Get Them"
 date: "2023-09-10"
 image: "./vallartas.jfif"
 categories:
-  - food
-  - ranking
+  - Food
+  - Ranking
 draft: false
 ---
 
