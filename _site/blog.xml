@@ -6,14 +6,14 @@
       version="2.0">
 <channel>
 <title>monographs</title>
-<link>https://syrchanan.quarto.pub/blog.html</link>
-<atom:link href="https://syrchanan.quarto.pub/blog.xml" rel="self" type="application/rss+xml"/>
+<link>https://syrchanan.quarto.pub/monographs/blog.html</link>
+<atom:link href="https://syrchanan.quarto.pub/monographs/blog.xml" rel="self" type="application/rss+xml"/>
 <description>A collection of various short studies</description>
 <generator>quarto-1.6.36</generator>
 <lastBuildDate>Mon, 02 Dec 2024 05:00:00 GMT</lastBuildDate>
 <item>
   <title>2024 Day 2: Red-Nosed Reports</title>
-  <link>https://syrchanan.quarto.pub/posts/20241202-advent-of-code/</link>
+  <link>https://syrchanan.quarto.pub/monographs/posts/20241202-advent-of-code/</link>
   <description><![CDATA[ 
 
 
@@ -373,14 +373,13 @@ font-style: inherit;">sum</span>()</span></code></pre></div>
 
  ]]></description>
   <category>Advent of Code</category>
-  <category>OJS</category>
   <category>R</category>
-  <guid>https://syrchanan.quarto.pub/posts/20241202-advent-of-code/</guid>
+  <guid>https://syrchanan.quarto.pub/monographs/posts/20241202-advent-of-code/</guid>
   <pubDate>Mon, 02 Dec 2024 05:00:00 GMT</pubDate>
 </item>
 <item>
   <title>2024 Day 1: Historian Hysteria</title>
-  <link>https://syrchanan.quarto.pub/posts/20241201-advent-of-code/</link>
+  <link>https://syrchanan.quarto.pub/monographs/posts/20241201-advent-of-code/</link>
   <description><![CDATA[ 
 
 
@@ -962,12 +961,12 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
   <category>Advent of Code</category>
   <category>OJS</category>
   <category>R</category>
-  <guid>https://syrchanan.quarto.pub/posts/20241201-advent-of-code/</guid>
+  <guid>https://syrchanan.quarto.pub/monographs/posts/20241201-advent-of-code/</guid>
   <pubDate>Sun, 01 Dec 2024 05:00:00 GMT</pubDate>
 </item>
 <item>
   <title>What’s Next?</title>
-  <link>https://syrchanan.quarto.pub/posts/20241115-whats-next/</link>
+  <link>https://syrchanan.quarto.pub/monographs/posts/20241115-whats-next/</link>
   <description><![CDATA[ 
 
 
@@ -993,12 +992,12 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
  ]]></description>
   <category>Update</category>
   <category>Advent of Code</category>
-  <guid>https://syrchanan.quarto.pub/posts/20241115-whats-next/</guid>
+  <guid>https://syrchanan.quarto.pub/monographs/posts/20241115-whats-next/</guid>
   <pubDate>Fri, 15 Nov 2024 05:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Baker’s Guard Zouaves</title>
-  <link>https://syrchanan.quarto.pub/posts/20230917-baker-zouave/</link>
+  <link>https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/</link>
   <description><![CDATA[ 
 
 
@@ -1017,12 +1016,12 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
 <h3 class="anchored" data-anchor-id="zouaves-in-the-us">Zouaves in the US</h3>
 <p>As the Zouaves gained fame in the French army during their conquest of Africa, they became renowned as an elite fighting corps. Word quickly spread, through observers and military officials alike - soon everyone was talking about the fearsome Zouaves.</p>
 <p>This included Elmer E. Ellsworth, an enterprising individual who obtained a Zouave training manual from his friend, who was a surgeon in the French North-African Zouave units. He then formed a touring company, which performed light infantry drills all over the nation, drumming up even more interest in these “foreign” soldiers.</p>
-<p><img src="https://syrchanan.quarto.pub/posts/20230917-baker-zouave/ElmerEllsworthphoto01.jpg" class="img-fluid"></p>
+<p><img src="https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/ElmerEllsworthphoto01.jpg" class="img-fluid"></p>
 <p>When the Civil War broke out, multiple units of Zouaves were formed, almost exclusively as militia units. Ellsworth’s own touring company became the 11th NY “Fire Zouaves”, on account of their red-trimmed uniforms.</p>
 <p>Zouave uniforms were very similar to those of the French-Algerian troops: fez, baggy chasseur trousers, a shell jacket (which is open-fronted), jambieres (or gaiters), etc. These styles were often trimmed in red, both after the 11th NY and the original Zouaves - though they also had many swirls of embroidery as embellishments.</p>
-<p><img src="https://syrchanan.quarto.pub/posts/20230917-baker-zouave/zouave.jpg" class="img-fluid"></p>
+<p><img src="https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/zouave.jpg" class="img-fluid"></p>
 <p>Fashion of the US during this time was also influenced by the famed Zouaves - tales of their exploits spread throughout the press, and many people wanted to dress like them as a result. Of course, men’s fashion was taken in with the designs, but more surprising was women’s fashion was as well. Many open-front Zouave-style jackets were worn as outerwear (as seen below), and the swirling, bold styles were also adopted into formal wear.</p>
-<p><img src="https://syrchanan.quarto.pub/posts/20230917-baker-zouave/zouave_womens.jpg" class="img-fluid"></p>
+<p><img src="https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/zouave_womens.jpg" class="img-fluid"></p>
 </section>
 <section id="bakers-guard-zouaves" class="level3">
 <h3 class="anchored" data-anchor-id="bakers-guard-zouaves">Baker’s Guard Zouaves</h3>
@@ -1031,7 +1030,7 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
 <p>Company K was raised from volunteers in Philadelphia by Cpt. William Davis, who was reported in the newspaper to be from the “gallant New York 69th”, another famed Irish regiment (from which the 69th Pennsylvania took it’s name).</p>
 <p>The two regiments were named the “Baker’s Guard” Zouaves after Col. Edward D. Baker, who led the Philadelphia Brigade (of which the 69th Pennsylvania was assigned to).</p>
 <p>These two companies, in the Zouave fashion, also had an extremely distinctive uniform. Similar to those of the 11th NY Fire Zouaves, and the 72nd and 95th Pennsylvania regiments of Zouaves, the Baker’s Guard Zouaves all wore the shortened shell jacket, vest, chasseur trousers, and jambieres; however, there were slight differences. As the rest of the units were trimmed in red, the Baker’s Guard uniforms were all trimmed in green, symbolic of their predominantly Irish heritage. Also, they opted to wear a kepi hat, also trimmed in green - rather than the traditional fez.</p>
-<p><img src="https://syrchanan.quarto.pub/posts/20230917-baker-zouave/baker_zouave.png" class="img-fluid"></p>
+<p><img src="https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/baker_zouave.png" class="img-fluid"></p>
 <p>With such a different uniform, in the midst of war, one might assume they were only privately purchased - however, there are records of reissue:</p>
 <blockquote class="blockquote">
 <p>This uniform was approved for reissue by the federal quartermasters in April of 1862, when Lieutenant Colonel George H. Crossman, Deputy Quartermaster at Philadelphia approved the manufacture of 160 uniforms “of the same pattern” which were known by the manufacturing firms of Rock &amp; Wilson and Jacob Reed.</p>
@@ -1052,13 +1051,13 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
   <category>Civil War</category>
   <category>Reenacting</category>
   <category>History</category>
-  <guid>https://syrchanan.quarto.pub/posts/20230917-baker-zouave/</guid>
+  <guid>https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/</guid>
   <pubDate>Sun, 17 Sep 2023 04:00:00 GMT</pubDate>
-  <media:content url="https://syrchanan.quarto.pub/posts/20230917-baker-zouave/ElmerEllsworthphoto01.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/ElmerEllsworthphoto01.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>The Definitive Ranking of California Burritos</title>
-  <link>https://syrchanan.quarto.pub/posts/20230910-california-burritos/</link>
+  <link>https://syrchanan.quarto.pub/monographs/posts/20230910-california-burritos/</link>
   <description><![CDATA[ 
 
 
@@ -1093,13 +1092,13 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
  ]]></description>
   <category>Food</category>
   <category>Ranking</category>
-  <guid>https://syrchanan.quarto.pub/posts/20230910-california-burritos/</guid>
+  <guid>https://syrchanan.quarto.pub/monographs/posts/20230910-california-burritos/</guid>
   <pubDate>Sun, 10 Sep 2023 04:00:00 GMT</pubDate>
-  <media:content url="https://syrchanan.quarto.pub/posts/20230910-california-burritos/vallartas.jfif" medium="image" type="image/jpeg"/>
+  <media:content url="https://syrchanan.quarto.pub/monographs/posts/20230910-california-burritos/vallartas.jfif" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Cable News Coverage of the NY Trump Arraignment</title>
-  <link>https://syrchanan.quarto.pub/posts/20230408-trump-arraignment-ny/</link>
+  <link>https://syrchanan.quarto.pub/monographs/posts/20230408-trump-arraignment-ny/</link>
   <description><![CDATA[ 
 
 
@@ -1123,7 +1122,7 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
 <p>In my analysis, I aggregated all of the closed captions from CNN, FOX and MSNBC between the hours of 7 p.m. and 3 a.m. ET. In the industry, this time period is often referred to as Sales Prime, which is the block of coverage which sees the largest audiences across the board (it extends late in order to capture the West Coast too).</p>
 <p>As a reminder, for each 10-minute block (since that is the granularity of data provided by the GDELT Project), any time the word “Trump” was said, all the words in that block were included. This way, the words most commonly said around “Trump” will be considered. These adjacent words were then lemmatized (cleaned and grouped) and fuzzily combined across networks to find the 200 most common mentions.</p>
 <p>The top words per network are plotted below:</p>
-<p><img src="https://syrchanan.quarto.pub/posts/20230408-trump-arraignment-ny/Trump_indictment_4-3-23.svg" class="img-fluid"></p>
+<p><img src="https://syrchanan.quarto.pub/monographs/posts/20230408-trump-arraignment-ny/Trump_indictment_4-3-23.svg" class="img-fluid"></p>
 </section>
 <section id="so-what-does-this-mean" class="level3">
 <h3 class="anchored" data-anchor-id="so-what-does-this-mean">So what does this mean?</h3>
@@ -1158,13 +1157,13 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
   <category>News</category>
   <category>Analysis</category>
   <category>R</category>
-  <guid>https://syrchanan.quarto.pub/posts/20230408-trump-arraignment-ny/</guid>
+  <guid>https://syrchanan.quarto.pub/monographs/posts/20230408-trump-arraignment-ny/</guid>
   <pubDate>Sat, 08 Apr 2023 04:00:00 GMT</pubDate>
-  <media:content url="https://syrchanan.quarto.pub/posts/20230408-trump-arraignment-ny/Trump_indictment_4-3-23.svg" medium="image" type="image/svg+xml"/>
+  <media:content url="https://syrchanan.quarto.pub/monographs/posts/20230408-trump-arraignment-ny/Trump_indictment_4-3-23.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>Cable News Coverage of the Georgia Runoffs</title>
-  <link>https://syrchanan.quarto.pub/posts/20221211-ga-runoff/</link>
+  <link>https://syrchanan.quarto.pub/monographs/posts/20221211-ga-runoff/</link>
   <description><![CDATA[ 
 
 
@@ -1189,7 +1188,7 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
 <p>For each 10-minute block (since that is the granularity of data provided by the GDELT Project), any time the word “election” was said, all the words in that block were included. This way, the words most commonly said around “election” will be considered.</p>
 <p>These adjacent words were then lemmatized (cleaned and grouped) and fuzzily combined across networks to find the 200 most common mentions.</p>
 <p>The top words per network are plotted below:</p>
-<p><img src="https://syrchanan.quarto.pub/posts/20221211-ga-runoff/GA_runoff_plot.svg" class="img-fluid"></p>
+<p><img src="https://syrchanan.quarto.pub/monographs/posts/20221211-ga-runoff/GA_runoff_plot.svg" class="img-fluid"></p>
 </section>
 <section id="so-what-does-this-mean" class="level3">
 <h3 class="anchored" data-anchor-id="so-what-does-this-mean">So what does this mean?</h3>
@@ -1216,13 +1215,13 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
   <category>News</category>
   <category>Analysis</category>
   <category>R</category>
-  <guid>https://syrchanan.quarto.pub/posts/20221211-ga-runoff/</guid>
+  <guid>https://syrchanan.quarto.pub/monographs/posts/20221211-ga-runoff/</guid>
   <pubDate>Sun, 11 Dec 2022 05:00:00 GMT</pubDate>
-  <media:content url="https://syrchanan.quarto.pub/posts/20221211-ga-runoff/GA_runoff_plot.png" medium="image" type="image/png"/>
+  <media:content url="https://syrchanan.quarto.pub/monographs/posts/20221211-ga-runoff/GA_runoff_plot.png" medium="image" type="image/png"/>
 </item>
 <item>
   <title>John Hardy vs. John Henry</title>
-  <link>https://syrchanan.quarto.pub/posts/20221024-john-hardy-vs-henry/</link>
+  <link>https://syrchanan.quarto.pub/monographs/posts/20221024-john-hardy-vs-henry/</link>
   <description><![CDATA[ 
 
 
@@ -1230,7 +1229,7 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://syrchanan.quarto.pub/posts/20221024-john-hardy-vs-henry/hardy-hanging.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="John Hardy on the gallows in WV, circa 1894."></p>
+<p><img src="https://syrchanan.quarto.pub/monographs/posts/20221024-john-hardy-vs-henry/hardy-hanging.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="John Hardy on the gallows in WV, circa 1894."></p>
 </figure>
 </div>
 <section id="the-ballads" class="level3">
@@ -1301,9 +1300,9 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
 </section></div> ]]></description>
   <category>Music</category>
   <category>History</category>
-  <guid>https://syrchanan.quarto.pub/posts/20221024-john-hardy-vs-henry/</guid>
+  <guid>https://syrchanan.quarto.pub/monographs/posts/20221024-john-hardy-vs-henry/</guid>
   <pubDate>Mon, 24 Oct 2022 04:00:00 GMT</pubDate>
-  <media:content url="https://syrchanan.quarto.pub/posts/20221024-john-hardy-vs-henry/hardy-hanging.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://syrchanan.quarto.pub/monographs/posts/20221024-john-hardy-vs-henry/hardy-hanging.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>

@@ -1,1 +1,1 @@
-Sitemap: https://syrchanan.quarto.pub/sitemap.xml
+Sitemap: https://syrchanan.quarto.pub/monographs/sitemap.xml
