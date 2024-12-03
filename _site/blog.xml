@@ -6,14 +6,381 @@
       version="2.0">
 <channel>
 <title>monographs</title>
-<link>https://syrchanan.quarto.pub/monographs/blog.html</link>
-<atom:link href="https://syrchanan.quarto.pub/monographs/blog.xml" rel="self" type="application/rss+xml"/>
+<link>https://syrchanan.quarto.pub/blog.html</link>
+<atom:link href="https://syrchanan.quarto.pub/blog.xml" rel="self" type="application/rss+xml"/>
 <description>A collection of various short studies</description>
 <generator>quarto-1.6.36</generator>
-<lastBuildDate>Sun, 01 Dec 2024 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 02 Dec 2024 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>2024 Day 2: Red-Nosed Reports</title>
+  <link>https://syrchanan.quarto.pub/posts/20241202-advent-of-code/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Time for some <a href="https://adventofcode.com/2024/day/2">day 2</a> action!</p>
+<section id="part-1" class="level3">
+<h3 class="anchored" data-anchor-id="part-1">Part 1</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">check_validity <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(vec) {</span>
+<span id="cb1-2">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># check if vec == sort(vec) or rev(sort(vec)), we know it is asc or desc</span></span>
+<span id="cb1-3">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> ( <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">identical</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sort</span>(vec), vec) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;&amp;</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">identical</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rev</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sort</span>(vec)), vec) ) {</span>
+<span id="cb1-4">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb1-5">    }</span>
+<span id="cb1-6">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># if it is, subtract each from the value that comes before it</span></span>
+<span id="cb1-7">    diffs <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> vec[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(vec)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>] <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lead</span>(vec)[<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">is.na</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lead</span>(vec))]</span>
+<span id="cb1-8">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># check all diffs are ints -3 &lt;= x &lt;= 3, where x != 0</span></span>
+<span id="cb1-9">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> ( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">all</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">abs</span>(diffs) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>)) ) {</span>
+<span id="cb1-10">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb1-11">    } <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span> {</span>
+<span id="cb1-12">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb1-13">    }</span>
+<span id="cb1-14">}</span></code></pre></div>
+</div>
+<p>Since we are repeating the same operation across each input row, let’s create a function to map across each row:</p>
+<ul>
+<li><p>First, we need to check that all sequences are either ascending or descending – and we accomplish that by using <code>sort()</code> and <code>rev()</code>. If the input vector doesn’t match the sorted or reverse sorted vector, then we know it is out of order and can skip it. However, if it matches one of them, then we can proceed.</p></li>
+<li><p>The next step is to subtract each number from the one that precedes it, which we accomplish with <code>lead()</code>. It could also be done coming from the other side with <code>lag()</code>, just preference to come at it from this side. Once we have all of our diffs (and have ditched the NAs from the <code>lead()</code> shift), we can take the absolute value of each and check that they are all either 1, 2, or 3.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">raw <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_split</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">n'</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list_c</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_trim</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_split</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">s+"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-6">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># map our function across each input row</span></span>
+<span id="cb2-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">check_validity</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(.x))) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list_c</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 326</code></pre>
+</div>
+</div>
+<p>Now that our function is complete, all we have to do for this part is clean up the input, split on each row, and map our function across each item in the list! Since we encoded the function output as 1’s and 0’s, we can easily sum to get the count of passing rows.</p>
+<p>⭐</p>
+</section>
+<section id="part-2" class="level3">
+<h3 class="anchored" data-anchor-id="part-2">Part 2</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">build_shift_list <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(vec) {</span>
+<span id="cb4-2"></span>
+<span id="cb4-3">  all_variations <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(vec)</span>
+<span id="cb4-4"></span>
+<span id="cb4-5">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># for each step subset a different portion</span></span>
+<span id="cb4-6">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> (shift <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(vec)) {    </span>
+<span id="cb4-7">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">append</span>(</span>
+<span id="cb4-8">      all_variations, </span>
+<span id="cb4-9">      <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># head counts from the front, tail counts from the back</span></span>
+<span id="cb4-10">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">head</span>(vec, shift<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">-1</span>), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tail</span>(vec, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(vec)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>shift) ) )</span>
+<span id="cb4-11">    ) <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-&gt;</span> all_variations</span>
+<span id="cb4-12">  }</span>
+<span id="cb4-13">  </span>
+<span id="cb4-14">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(all_variations)</span>
+<span id="cb4-15"></span>
+<span id="cb4-16">}</span></code></pre></div>
+</div>
+<p>In part two, we have to consider each variation of the input sequence created by deleting each number from that sequence. This calls for another function, which is pretty straightforward – we first count the length of the row, and then iterate through the row, removing each number at a time (and not forgetting to include the original vector in the return list).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">raw <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_split</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">n'</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list_c</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_trim</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_split</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">s+'</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-6">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># map across each to build a list of options within the outer list</span></span>
+<span id="cb5-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">build_shift_list</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(.x))) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-8">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># at depth 2 (list of lists), run function from before</span></span>
+<span id="cb5-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map_depth</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">.depth =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, check_validity) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-10">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># summarise each sublist -- if any are 1, then count all as 1</span></span>
+<span id="cb5-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ifelse</span>( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">any</span>(.x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span> )) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list_c</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-13">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 381</code></pre>
+</div>
+</div>
+<p>Now that that is sorted, we can do almost the exact same as for Part 1; however, we need two new lines to:</p>
+<ul>
+<li><p>Get our shifted lists, which will create a hierarchy of lists</p>
+<ul>
+<li>ex: <code>[ [1, 2, 3], [2, 3], [1, 3], [1, 2] ]</code></li>
+</ul></li>
+<li><p>Map our first function across those sublists (which are depth 2 on our traversal tree)</p></li>
+</ul>
+<p>Easy enough!</p>
+<p>⭐</p>
+<hr>
+<p>Perhaps we mix up the language for tomorrow?</p>
+<p>-CH</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Advent of Code</category>
+  <category>OJS</category>
+  <category>R</category>
+  <guid>https://syrchanan.quarto.pub/posts/20241202-advent-of-code/</guid>
+  <pubDate>Mon, 02 Dec 2024 05:00:00 GMT</pubDate>
+</item>
 <item>
   <title>2024 Day 1: Historian Hysteria</title>
-  <link>https://syrchanan.quarto.pub/monographs/posts/20241201-advent-of-code/</link>
+  <link>https://syrchanan.quarto.pub/posts/20241201-advent-of-code/</link>
   <description><![CDATA[ 
 
 
@@ -595,12 +962,12 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
   <category>Advent of Code</category>
   <category>OJS</category>
   <category>R</category>
-  <guid>https://syrchanan.quarto.pub/monographs/posts/20241201-advent-of-code/</guid>
+  <guid>https://syrchanan.quarto.pub/posts/20241201-advent-of-code/</guid>
   <pubDate>Sun, 01 Dec 2024 05:00:00 GMT</pubDate>
 </item>
 <item>
   <title>What’s Next?</title>
-  <link>https://syrchanan.quarto.pub/monographs/posts/20241115-whats-next/</link>
+  <link>https://syrchanan.quarto.pub/posts/20241115-whats-next/</link>
   <description><![CDATA[ 
 
 
@@ -626,12 +993,12 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
  ]]></description>
   <category>Update</category>
   <category>Advent of Code</category>
-  <guid>https://syrchanan.quarto.pub/monographs/posts/20241115-whats-next/</guid>
+  <guid>https://syrchanan.quarto.pub/posts/20241115-whats-next/</guid>
   <pubDate>Fri, 15 Nov 2024 05:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Baker’s Guard Zouaves</title>
-  <link>https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/</link>
+  <link>https://syrchanan.quarto.pub/posts/20230917-baker-zouave/</link>
   <description><![CDATA[ 
 
 
@@ -650,12 +1017,12 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
 <h3 class="anchored" data-anchor-id="zouaves-in-the-us">Zouaves in the US</h3>
 <p>As the Zouaves gained fame in the French army during their conquest of Africa, they became renowned as an elite fighting corps. Word quickly spread, through observers and military officials alike - soon everyone was talking about the fearsome Zouaves.</p>
 <p>This included Elmer E. Ellsworth, an enterprising individual who obtained a Zouave training manual from his friend, who was a surgeon in the French North-African Zouave units. He then formed a touring company, which performed light infantry drills all over the nation, drumming up even more interest in these “foreign” soldiers.</p>
-<p><img src="https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/ElmerEllsworthphoto01.jpg" class="img-fluid"></p>
+<p><img src="https://syrchanan.quarto.pub/posts/20230917-baker-zouave/ElmerEllsworthphoto01.jpg" class="img-fluid"></p>
 <p>When the Civil War broke out, multiple units of Zouaves were formed, almost exclusively as militia units. Ellsworth’s own touring company became the 11th NY “Fire Zouaves”, on account of their red-trimmed uniforms.</p>
 <p>Zouave uniforms were very similar to those of the French-Algerian troops: fez, baggy chasseur trousers, a shell jacket (which is open-fronted), jambieres (or gaiters), etc. These styles were often trimmed in red, both after the 11th NY and the original Zouaves - though they also had many swirls of embroidery as embellishments.</p>
-<p><img src="https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/zouave.jpg" class="img-fluid"></p>
+<p><img src="https://syrchanan.quarto.pub/posts/20230917-baker-zouave/zouave.jpg" class="img-fluid"></p>
 <p>Fashion of the US during this time was also influenced by the famed Zouaves - tales of their exploits spread throughout the press, and many people wanted to dress like them as a result. Of course, men’s fashion was taken in with the designs, but more surprising was women’s fashion was as well. Many open-front Zouave-style jackets were worn as outerwear (as seen below), and the swirling, bold styles were also adopted into formal wear.</p>
-<p><img src="https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/zouave_womens.jpg" class="img-fluid"></p>
+<p><img src="https://syrchanan.quarto.pub/posts/20230917-baker-zouave/zouave_womens.jpg" class="img-fluid"></p>
 </section>
 <section id="bakers-guard-zouaves" class="level3">
 <h3 class="anchored" data-anchor-id="bakers-guard-zouaves">Baker’s Guard Zouaves</h3>
@@ -664,7 +1031,7 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
 <p>Company K was raised from volunteers in Philadelphia by Cpt. William Davis, who was reported in the newspaper to be from the “gallant New York 69th”, another famed Irish regiment (from which the 69th Pennsylvania took it’s name).</p>
 <p>The two regiments were named the “Baker’s Guard” Zouaves after Col. Edward D. Baker, who led the Philadelphia Brigade (of which the 69th Pennsylvania was assigned to).</p>
 <p>These two companies, in the Zouave fashion, also had an extremely distinctive uniform. Similar to those of the 11th NY Fire Zouaves, and the 72nd and 95th Pennsylvania regiments of Zouaves, the Baker’s Guard Zouaves all wore the shortened shell jacket, vest, chasseur trousers, and jambieres; however, there were slight differences. As the rest of the units were trimmed in red, the Baker’s Guard uniforms were all trimmed in green, symbolic of their predominantly Irish heritage. Also, they opted to wear a kepi hat, also trimmed in green - rather than the traditional fez.</p>
-<p><img src="https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/baker_zouave.png" class="img-fluid"></p>
+<p><img src="https://syrchanan.quarto.pub/posts/20230917-baker-zouave/baker_zouave.png" class="img-fluid"></p>
 <p>With such a different uniform, in the midst of war, one might assume they were only privately purchased - however, there are records of reissue:</p>
 <blockquote class="blockquote">
 <p>This uniform was approved for reissue by the federal quartermasters in April of 1862, when Lieutenant Colonel George H. Crossman, Deputy Quartermaster at Philadelphia approved the manufacture of 160 uniforms “of the same pattern” which were known by the manufacturing firms of Rock &amp; Wilson and Jacob Reed.</p>
@@ -685,13 +1052,13 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
   <category>Civil War</category>
   <category>Reenacting</category>
   <category>History</category>
-  <guid>https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/</guid>
+  <guid>https://syrchanan.quarto.pub/posts/20230917-baker-zouave/</guid>
   <pubDate>Sun, 17 Sep 2023 04:00:00 GMT</pubDate>
-  <media:content url="https://syrchanan.quarto.pub/monographs/posts/20230917-baker-zouave/ElmerEllsworthphoto01.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://syrchanan.quarto.pub/posts/20230917-baker-zouave/ElmerEllsworthphoto01.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>The Definitive Ranking of California Burritos</title>
-  <link>https://syrchanan.quarto.pub/monographs/posts/20230910-california-burritos/</link>
+  <link>https://syrchanan.quarto.pub/posts/20230910-california-burritos/</link>
   <description><![CDATA[ 
 
 
@@ -726,13 +1093,13 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
  ]]></description>
   <category>Food</category>
   <category>Ranking</category>
-  <guid>https://syrchanan.quarto.pub/monographs/posts/20230910-california-burritos/</guid>
+  <guid>https://syrchanan.quarto.pub/posts/20230910-california-burritos/</guid>
   <pubDate>Sun, 10 Sep 2023 04:00:00 GMT</pubDate>
-  <media:content url="https://syrchanan.quarto.pub/monographs/posts/20230910-california-burritos/vallartas.jfif" medium="image" type="image/jpeg"/>
+  <media:content url="https://syrchanan.quarto.pub/posts/20230910-california-burritos/vallartas.jfif" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Cable News Coverage of the NY Trump Arraignment</title>
-  <link>https://syrchanan.quarto.pub/monographs/posts/20230408-trump-arraignment-ny/</link>
+  <link>https://syrchanan.quarto.pub/posts/20230408-trump-arraignment-ny/</link>
   <description><![CDATA[ 
 
 
@@ -756,7 +1123,7 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
 <p>In my analysis, I aggregated all of the closed captions from CNN, FOX and MSNBC between the hours of 7 p.m. and 3 a.m. ET. In the industry, this time period is often referred to as Sales Prime, which is the block of coverage which sees the largest audiences across the board (it extends late in order to capture the West Coast too).</p>
 <p>As a reminder, for each 10-minute block (since that is the granularity of data provided by the GDELT Project), any time the word “Trump” was said, all the words in that block were included. This way, the words most commonly said around “Trump” will be considered. These adjacent words were then lemmatized (cleaned and grouped) and fuzzily combined across networks to find the 200 most common mentions.</p>
 <p>The top words per network are plotted below:</p>
-<p><img src="https://syrchanan.quarto.pub/monographs/posts/20230408-trump-arraignment-ny/Trump_indictment_4-3-23.svg" class="img-fluid"></p>
+<p><img src="https://syrchanan.quarto.pub/posts/20230408-trump-arraignment-ny/Trump_indictment_4-3-23.svg" class="img-fluid"></p>
 </section>
 <section id="so-what-does-this-mean" class="level3">
 <h3 class="anchored" data-anchor-id="so-what-does-this-mean">So what does this mean?</h3>
@@ -791,13 +1158,13 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
   <category>News</category>
   <category>Analysis</category>
   <category>R</category>
-  <guid>https://syrchanan.quarto.pub/monographs/posts/20230408-trump-arraignment-ny/</guid>
+  <guid>https://syrchanan.quarto.pub/posts/20230408-trump-arraignment-ny/</guid>
   <pubDate>Sat, 08 Apr 2023 04:00:00 GMT</pubDate>
-  <media:content url="https://syrchanan.quarto.pub/monographs/posts/20230408-trump-arraignment-ny/Trump_indictment_4-3-23.svg" medium="image" type="image/svg+xml"/>
+  <media:content url="https://syrchanan.quarto.pub/posts/20230408-trump-arraignment-ny/Trump_indictment_4-3-23.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>Cable News Coverage of the Georgia Runoffs</title>
-  <link>https://syrchanan.quarto.pub/monographs/posts/20221211-ga-runoff/</link>
+  <link>https://syrchanan.quarto.pub/posts/20221211-ga-runoff/</link>
   <description><![CDATA[ 
 
 
@@ -822,7 +1189,7 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
 <p>For each 10-minute block (since that is the granularity of data provided by the GDELT Project), any time the word “election” was said, all the words in that block were included. This way, the words most commonly said around “election” will be considered.</p>
 <p>These adjacent words were then lemmatized (cleaned and grouped) and fuzzily combined across networks to find the 200 most common mentions.</p>
 <p>The top words per network are plotted below:</p>
-<p><img src="https://syrchanan.quarto.pub/monographs/posts/20221211-ga-runoff/GA_runoff_plot.svg" class="img-fluid"></p>
+<p><img src="https://syrchanan.quarto.pub/posts/20221211-ga-runoff/GA_runoff_plot.svg" class="img-fluid"></p>
 </section>
 <section id="so-what-does-this-mean" class="level3">
 <h3 class="anchored" data-anchor-id="so-what-does-this-mean">So what does this mean?</h3>
@@ -849,13 +1216,13 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
   <category>News</category>
   <category>Analysis</category>
   <category>R</category>
-  <guid>https://syrchanan.quarto.pub/monographs/posts/20221211-ga-runoff/</guid>
+  <guid>https://syrchanan.quarto.pub/posts/20221211-ga-runoff/</guid>
   <pubDate>Sun, 11 Dec 2022 05:00:00 GMT</pubDate>
-  <media:content url="https://syrchanan.quarto.pub/monographs/posts/20221211-ga-runoff/GA_runoff_plot.png" medium="image" type="image/png"/>
+  <media:content url="https://syrchanan.quarto.pub/posts/20221211-ga-runoff/GA_runoff_plot.png" medium="image" type="image/png"/>
 </item>
 <item>
   <title>John Hardy vs. John Henry</title>
-  <link>https://syrchanan.quarto.pub/monographs/posts/20221024-john-hardy-vs-henry/</link>
+  <link>https://syrchanan.quarto.pub/posts/20221024-john-hardy-vs-henry/</link>
   <description><![CDATA[ 
 
 
@@ -863,7 +1230,7 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://syrchanan.quarto.pub/monographs/posts/20221024-john-hardy-vs-henry/hardy-hanging.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="John Hardy on the gallows in WV, circa 1894."></p>
+<p><img src="https://syrchanan.quarto.pub/posts/20221024-john-hardy-vs-henry/hardy-hanging.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="John Hardy on the gallows in WV, circa 1894."></p>
 </figure>
 </div>
 <section id="the-ballads" class="level3">
@@ -934,9 +1301,9 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
 </section></div> ]]></description>
   <category>Music</category>
   <category>History</category>
-  <guid>https://syrchanan.quarto.pub/monographs/posts/20221024-john-hardy-vs-henry/</guid>
+  <guid>https://syrchanan.quarto.pub/posts/20221024-john-hardy-vs-henry/</guid>
   <pubDate>Mon, 24 Oct 2022 04:00:00 GMT</pubDate>
-  <media:content url="https://syrchanan.quarto.pub/monographs/posts/20221024-john-hardy-vs-henry/hardy-hanging.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://syrchanan.quarto.pub/posts/20221024-john-hardy-vs-henry/hardy-hanging.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
