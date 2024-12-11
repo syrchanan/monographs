@@ -2,6 +2,10 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/20241206-advent-of-code/index.html",
+      "/posts/20241205-advent-of-code/index.html",
+      "/posts/20241204-advent-of-code/index.html",
+      "/posts/20241203-advent-of-code/index.html",
       "/posts/20241202-advent-of-code/index.html",
       "/posts/20241201-advent-of-code/index.html",
       "/posts/20241115-whats-next/index.html",

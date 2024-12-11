@@ -2,7 +2,7 @@
 title: "Cable News Coverage of the Georgia Runoffs"
 subtitle: "A deep dive in content analysis"
 date: "2022-12-11"
-image: ./GA_runoff_plot.png
+image: ./GA_runoff_plot.svg
 categories:
   - News
   - Analysis

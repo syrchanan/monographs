@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://syrchanan.quarto.pub/monographs/posts/20241205-advent-of-code/index.html</loc>
+    <lastmod>2024-12-11T04:11:55.397Z</lastmod>
+  </url>
+  <url>
+    <loc>https://syrchanan.quarto.pub/monographs/posts/20241203-advent-of-code/index.html</loc>
+    <lastmod>2024-12-05T00:47:58.626Z</lastmod>
+  </url>
+  <url>
     <loc>https://syrchanan.quarto.pub/monographs/posts/20241201-advent-of-code/index.html</loc>
     <lastmod>2024-12-02T00:28:32.661Z</lastmod>
   </url>
@@ -26,7 +34,7 @@
   </url>
   <url>
     <loc>https://syrchanan.quarto.pub/monographs/posts/20221211-ga-runoff/index.html</loc>
-    <lastmod>2024-12-02T00:29:24.360Z</lastmod>
+    <lastmod>2024-12-11T04:13:33.022Z</lastmod>
   </url>
   <url>
     <loc>https://syrchanan.quarto.pub/monographs/posts/20230910-california-burritos/index.html</loc>
@@ -39,5 +47,13 @@
   <url>
     <loc>https://syrchanan.quarto.pub/monographs/posts/20241202-advent-of-code/index.html</loc>
     <lastmod>2024-12-03T00:12:32.066Z</lastmod>
+  </url>
+  <url>
+    <loc>https://syrchanan.quarto.pub/monographs/posts/20241204-advent-of-code/index.html</loc>
+    <lastmod>2024-12-07T20:13:14.182Z</lastmod>
+  </url>
+  <url>
+    <loc>https://syrchanan.quarto.pub/monographs/posts/20241206-advent-of-code/index.html</loc>
+    <lastmod>2024-12-11T05:15:56.124Z</lastmod>
   </url>
 </urlset>
