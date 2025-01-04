@@ -13,6 +13,9 @@ about:
     - icon: github
       text: Github
       href: https://github.com/syrchanan
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/connorhanan/
 ---
 
 This [blog](blog.qmd) is a collection of various short studies on topics that interest me, which I publish sporadically.
