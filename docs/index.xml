@@ -6,14 +6,973 @@
       version="2.0">
 <channel>
 <title>monographs</title>
-<link>https://syrchanan.quarto.pub/blog.html</link>
-<atom:link href="https://syrchanan.quarto.pub/blog.xml" rel="self" type="application/rss+xml"/>
+<link>https://www.blog.connorhanan.com/</link>
+<atom:link href="https://www.blog.connorhanan.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>A collection of various short studies</description>
 <generator>quarto-1.7.29</generator>
-<lastBuildDate>Sat, 07 Dec 2024 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 20 May 2025 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Exploring Lambda Calculus (Part 2)</title>
+  <link>https://www.blog.connorhanan.com/posts/20250520-lambda-calculus/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="recap" class="level2">
+<h2 class="anchored" data-anchor-id="recap">Recap</h2>
+<p>Last time, we left off with our first truth table exploring all the logic gate test permutations. If you missed it, <a href="../../posts/20250430-lambda-calculus/index.html">catch up here</a> before moving on to this post’s topic: math and simple calculation. <sup>1</sup></p>
+</section>
+<section id="church-numerals" class="level2">
+<h2 class="anchored" data-anchor-id="church-numerals">Church Numerals</h2>
+<p>Now that we have basic operations and logic gates, we need to advance past 1’s and 0’s to be able to represent more complex numerals. The difficulty here is going to be representing numerals with functions, for a few reasons:</p>
+<ol type="1">
+<li>There are an infinite number of numerals to represent</li>
+<li>How do we account for decimals, imaginaries, &amp;c?</li>
+<li>How can we combine the numerals using different functions, without defining the numerals themselves?</li>
+</ol>
+<p>We are going to explore Church Numerals, which define a numeral <em>N</em> by encapsulating a function <em>N</em> times. This is pretty cool, as we are then no longer representing the numeral <em>N</em> as a “count”; instead, it becomes more of a “timer”. Let’s take a look:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" data-startfrom="31" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 30;"><span id="cb1-31">N0 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> f <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> a <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> a <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// apply f 0 times</span></span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" data-startfrom="35" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 34;"><span id="cb2-35">N1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> f <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> a <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">f</span>(a) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// apply f 1 time</span></span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" data-startfrom="39" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 38;"><span id="cb3-39">N2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> f <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> a <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">f</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">f</span>(a)) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// apply f 2 times</span></span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" data-startfrom="43" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 42;"><span id="cb4-43">N3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> f <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> a <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">f</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">f</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">f</span>(a))) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// apply f 3 times</span></span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" data-startfrom="47" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 46;"><span id="cb5-47">N4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> f <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> a <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">f</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">f</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">f</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">f</span>(a)))) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// apply f 4 times</span></span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<p>… and so on. However, the absolute <em>last</em> thing I want to do is sit here and write more functions to define every number ever. So, let’s call it good here, and use this (admittedly) short list to test our operations with.</p>
+</section>
+<section id="mathematical-operations" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-operations">Mathematical Operations</h2>
+<p>Similar to the idea of a “wrapper” function from above (see <code>NOT()</code>), we need to define functions that will wrap around numbers to perform operations on them.</p>
+<p>The first of these is the most simple, the successor function <code>SUCC()</code>. A fancy name for a basic operation, all this does is increment the number by 1. All it really is going to do is add another layer of wrapping around the number – that way, when we count the layers by “time”, our count, and therefore value, will have increased by 1.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" data-startfrom="59" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 58;"><span id="cb6-59">SUCC <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> n <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> f <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> x <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">f</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">n</span>(f)(x))</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<p>In the above, <code>f =&gt; x =&gt; f(n(f)(x))</code> creates our new number. To break it down further, <em>n</em> is the amount of times we are wrapping <em>f</em> around <em>x</em>, which means on its own, <code>n(f)(x)</code> is equal to <em>n</em>, the input number.</p>
+<p>The crucial part of this function is the wrapper <em>f()</em> – as that is the piece which adds another “layer” to our number function, thereby incrementing its “count” by 1. If we substitute out the <em>n</em> discussed above for <em>N</em> (our numeral), this simplifies down to <code>N =&gt; f(N)</code>, where the incrementation is far easier to spot.</p>
+<p>Now, we can move towards addition using the same principles. Instead of wrapping the “number” with one additional function call (successor), we need to wrap it with a variable number of functions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" data-startfrom="69" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 68;"><span id="cb7-69">PLUS <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> m <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> n <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> f <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> x <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">m</span>(f)(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">n</span>(f)(x))</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<p>In the above, we achieve this by using the same “inner” variable for both functions, <em>x</em>. Accordingly, we want to apply <em>f</em> to <em>x</em> for each nested “number” function (<em>m</em> and <em>n</em>). Thus, we are applying <em>f</em> to <em>x</em> for <em>m</em> + <em>n</em> times, and following the same pattern of counting nested levels, we end up with our sum.</p>
+<p>This principle is very extensible to multiplication – rather than operating on the same variable <em>x</em>, we want the “number” functions to operate on each other:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" data-startfrom="77" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 76;"><span id="cb8-77">MULT <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> m <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> n <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> f <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">m</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">n</span>(f))</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<p>Rather than increasing the variable <em>x</em> first <em>m</em> times, then <em>n</em> times, we need to (increase the variable <em>f</em> <em>n</em> times) <em>m</em> times.</p>
+<p>A more verbose way to write <code>MULT()</code> would be to add the <em>x</em> variable back in:</p>
+<p><code>MULT = m =&gt; n =&gt; f =&gt; x =&gt; m(n(f))(x)</code></p>
+<p>In this form, it is easier to see that instead of both <em>m</em> and <em>n</em> operating on <em>f(x)</em>, we are instead having <em>m</em> operate on <em>n</em>, which is in turn operating on <em>f(x)</em>.</p>
+<p>Exponentiation takes this idea farther, and instead of using <em>f(x)</em> as the base we are incrementing, we want to increase the base, <em>b</em>, itself by <em>e</em> (exponent) amount of times.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9" data-startfrom="91" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 90;"><span id="cb9-91">POW <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> b <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> e <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">e</span>(b)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<p>Just like in <code>MULT()</code>, there is a more verbose way to show this:</p>
+<p><code>POW = b =&gt; e =&gt; f =&gt; x =&gt; e(b)(f)(x)</code></p>
+<p>Here, it’s less clean, but much clearer that <em>e</em> and <em>b</em> operate independently of <em>f(x)</em>, and only once calculated, adds <em>e(b)</em> wrappers around <em>f(x)</em>. Also, note that we are using <em>f(x)</em> here as the base, which is equal to 1 – if we had only <em>x</em> instead, we would end up with an incorrect amount of wrappers.</p>
+<p>With these basic arithmetic functions, let’s test our shiny new operation functions on a (drumroll please…) new truth table with our short list of numbers!</p>
+<p>As we did last time, we’ll need to create a helper function to convert the lambda functions to actual numerals…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" data-startfrom="105" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 104;"><span id="cb10-105">lambda_to_int <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (int) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> {</span>
+<span id="cb10-106">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">int</span>(x <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb10-107">}</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-10" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<p>… letting us build our table!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11" data-startfrom="113" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 112;"><span id="cb11-113">part_2_math_table <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {</span>
+<span id="cb11-114">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> output <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb11-115">  </span>
+<span id="cb11-116">  [N0<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> N1<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> N2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> N3<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> N4]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">forEach</span>(a <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> {    </span>
+<span id="cb11-117">    output<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">push</span>({</span>
+<span id="cb11-118">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">n</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lambda_to_int</span>(a)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb11-119">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">succ</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lambda_to_int</span>( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">SUCC</span>(a) )<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb11-120">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">plus</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lambda_to_int</span>( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">PLUS</span>(a)(a) )<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb11-121">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">mult</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lambda_to_int</span>( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">MULT</span>(a)(a) )<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb11-122">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">pow</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lambda_to_int</span>( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">POW</span>(a)(a) )</span>
+<span id="cb11-123">    })</span>
+<span id="cb11-124">  })</span>
+<span id="cb11-125"></span>
+<span id="cb11-126">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> output</span>
+<span id="cb11-127">}</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-11" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12" data-startfrom="131" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 130;"><span id="cb12-131">Inputs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">table</span>(part_2_math_table)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-12" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<hr>
+<p>Woohoo! We’ve got some basic operations working now. However, you might have noticed that these operations are strictly incrementing our value.</p>
+<p>Next time, we’ll take a look at how to reverse the direction with subtraction, and the underlying data structures that that will require.</p>
+<p>-CH</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Inspired by <a href="http://hexatlas.com/entries/7">Eric Wastl’s</a> and <a href="https://www.driverlesscrocodile.com/tools-and-techniques/lambda-calculus-for-people-a-step-behind-me-2-boolean-logic/">Stuart Patience’s</a> posts.↩︎</p></li>
+</ol>
+</section></div> ]]></description>
+  <category>OJS</category>
+  <guid>https://www.blog.connorhanan.com/posts/20250520-lambda-calculus/</guid>
+  <pubDate>Tue, 20 May 2025 04:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Exploring Lambda Calculus</title>
+  <link>https://www.blog.connorhanan.com/posts/20250430-lambda-calculus/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In short, lambda calculus is a pre-Turing machine implementation of computer programming. Rather than relying on memory, instructions, data structures, &amp;c, lambda calculus only has functions. These functions carry a few rules:</p>
+<ol type="1">
+<li>Functions can only take 1 argument, and have 1 statement.</li>
+<li>Closures (encapsulated function environments) are allowed, and needed.</li>
+<li>We can create aliases to help in shorthand, but all of the code muse be operable without doing anything that the original function cannot.</li>
+</ol>
+<p>With those out of the way, let’s begin… <sup>1</sup></p>
+</section>
+<section id="basics" class="level2">
+<h2 class="anchored" data-anchor-id="basics">Basics</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" data-startfrom="29" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 28;"><span id="cb1-29">IDENTITY <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> x <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> x</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<p>Our first function is very simple, but will show the foundation of what we are after.</p>
+<p>This is the <em>identity</em> function, which returns exactly what the input is. Notice we are following all rules above: 1 argument &amp; statement, &amp;c</p>
+<p>Let’s extend that a little farther:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" data-startfrom="39" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 38;"><span id="cb2-39">RETURN_FIRST <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> a <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> b <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> a</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" data-startfrom="43" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 42;"><span id="cb3-43"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">RETURN_FIRST</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" data-startfrom="47" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 46;"><span id="cb4-47">RETURN_SECOND <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> a <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> b <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> b</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" data-startfrom="51" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 50;"><span id="cb5-51"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">RETURN_SECOND</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>In the above functions, we are technically nesting a function within another, such that the argument of the first may or may not be called by the second function. <code>RETURN_FIRST()</code> and <code>RETURN_SECOND()</code> do exactly as they say, and this ‘switch’ ability is going to be key to start adding logic.</p>
+</section>
+<section id="booleans-and-logic-gates" class="level2">
+<h2 class="anchored" data-anchor-id="booleans-and-logic-gates">Booleans and Logic Gates</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" data-startfrom="60" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 59;"><span id="cb6-60">TRUE <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> a <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> b <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> a</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" data-startfrom="64" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 63;"><span id="cb7-64">FALSE <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> a <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> b <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> b</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<p>This may not seem like a lot, or more like a regurgitation of the sample switch return functions above, but this is critical to the base of our logic. The above are our replication of boolean states, which (of course) can be combined together, creating <code>AND</code>/<code>OR</code> logic gates:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" data-startfrom="70" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 69;"><span id="cb8-70">AND <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> c <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(d)(c)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9" data-startfrom="74" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 73;"><span id="cb9-74">OR <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> c <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(c)(d)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<p>As you can see, the arguments to the functions above are all functions, and will return functions. For example (below), calling <code>AND(TRUE)(FALSE)</code> and <code>OR(TRUE)(FALSE)</code> will return the appropriate functions, either <code>FALSE()</code>, or <code>TRUE()</code>.</p>
+<p>As an example, let’s examine the <code>AND()</code> &amp; <code>OR()</code> step by step:</p>
+<ol type="1">
+<li>First, they accept two arguments, which we’ve seen before. In this function, the shorthand is <em>c</em> and <em>d</em>, but we’ll refer to them now as <em>first</em> and <em>second</em> arguments.</li>
+<li>Once the arguments are collected, the bulk of the function is <code>c(d)(c)</code> or <code>c(c)(d)</code>.</li>
+<li>Within these blocks, the order is critical, as the positions of the arguments of <code>TRUE()</code> and <code>FALSE()</code> dictate what the end result will be.</li>
+</ol>
+<p>As a thought experiment, let’s walk through all the possible permutations:</p>
+<ul>
+<li><code>AND(TRUE)(TRUE)</code> will call <code>TRUE(TRUE)(TRUE)</code>, returning: <code>TRUE()</code></li>
+<li><code>AND(TRUE)(FALSE)</code> will call <code>TRUE(FALSE)(TRUE)</code>, returning: <code>FALSE()</code></li>
+<li><code>AND(FALSE)(FALSE)</code> will call <code>FALSE(FALSE)(FALSE)</code>, returning: <code>FALSE()</code></li>
+<li><code>AND(FALSE)(TRUE)</code> will call <code>FALSE(TRUE)(FALSE)</code>, returning: <code>FALSE()</code></li>
+</ul>
+<p>Likewise, for <code>OR()</code>:</p>
+<ul>
+<li><code>OR(TRUE)(TRUE)</code> will call <code>TRUE(TRUE)(TRUE)</code>, returning: <code>TRUE()</code></li>
+<li><code>OR(TRUE)(FALSE)</code> will call <code>TRUE(TRUE)(FALSE)</code>, returning: <code>TRUE()</code></li>
+<li><code>OR(FALSE)(FALSE)</code> will call <code>FALSE(FALSE)(FALSE)</code>, returning: <code>FALSE()</code></li>
+<li><code>OR(FALSE)(TRUE)</code> will call <code>FALSE(FALSE)(TRUE)</code>, returning: <code>TRUE()</code></li>
+</ul>
+<p>And just to confirm that this is working as expected:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" data-startfrom="102" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 101;"><span id="cb10-102"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">AND</span>(TRUE)(FALSE) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">===</span> FALSE</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-10" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11" data-startfrom="106" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 105;"><span id="cb11-106"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">OR</span>(TRUE)(FALSE) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">===</span> TRUE</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-11" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>As opposed to the above, <code>NOT()</code> looks like it will take 3 arguments rather than the 2 we’ve seen so far. However, the best way to think about it is that it takes only 1 argument: one of the other logic functions: <code>AND()</code>, <code>OR()</code>, &amp;c.</p>
+<p>This way, instead of calling <code>AND(a)(b)</code>, it acts as a wrapper around the logic gate and will flip the inputs, translating it into <code>AND(b)(a)</code>. If you refer back to the <code>AND()</code>/<code>OR()</code> tables above, you can pretty clearly see how this would negate all the results.</p>
+<p>Let’s take a look:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12" data-startfrom="117" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 116;"><span id="cb12-117">NOT <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> c <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> a <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> b <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(b)(a)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-12" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13" data-startfrom="121" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 120;"><span id="cb13-121"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">NOT</span>( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">AND</span>(TRUE)(TRUE) ) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">===</span> FALSE</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-13" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>To extend this idea of a wrapper, we can leave the input order the same, and get a ternary operator out of it (just as a shorthand), of the form <code>IF(condition)(value if true)(value if false)</code> like so:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14" data-startfrom="128" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 127;"><span id="cb14-128">IF <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> c <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> a <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> b <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(a)(b)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-14" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15" data-startfrom="132" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 131;"><span id="cb15-132"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">IF</span>( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">AND</span>(TRUE)(FALSE) )(TRUE)(FALSE) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">===</span> FALSE</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-15" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>Now the incredible part – using these, we can now create all the rest of the core logic gates:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16" data-startfrom="138" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 137;"><span id="cb16-138">NAND <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> c <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">NOT</span>( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">AND</span>(c)(d) )</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-16" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17" data-startfrom="142" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 141;"><span id="cb17-142">NOR <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> c <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">NOT</span>( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">OR</span>(c)(d) )</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-17" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18" data-startfrom="146" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 145;"><span id="cb18-146">XOR <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> c <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">NOT</span>(d) )(d)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-18" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19" data-startfrom="150" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 149;"><span id="cb19-150">XNOR <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> c <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(d)( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">NOT</span>(d) )</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-19" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<p>And finally, with all these logic gates in hand, let’s extend the truth table from earlier to test all of these out. To do so, let’s build a helper function to let us parse out the values (since everything is a function, we need some real values to populate the table).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20" data-startfrom="156" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 155;"><span id="cb20-156">lambda_to_js <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (bool) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bool</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"TRUE"</span>)(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"FALSE"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-20" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<p>And now we can map across all permutations of our logic gates:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21" data-startfrom="162" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 161;"><span id="cb21-162">part_1_truth_table <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {</span>
+<span id="cb21-163">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> output <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb21-164">  </span>
+<span id="cb21-165">  [TRUE<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> FALSE]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">forEach</span>(a <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> {    </span>
+<span id="cb21-166">    [TRUE<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> FALSE]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">forEach</span>(b <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> {</span>
+<span id="cb21-167">      output<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">push</span>({</span>
+<span id="cb21-168">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">a</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lambda_to_js</span>(a)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb21-169">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">b</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lambda_to_js</span>(b)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb21-170">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">and</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lambda_to_js</span>( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">AND</span>(a)(b) )<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb21-171">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">or</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lambda_to_js</span>( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">OR</span>(a)(b) )<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb21-172">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">nand</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lambda_to_js</span>( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">NAND</span>(a)(b) )<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb21-173">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">nor</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lambda_to_js</span>( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">NOR</span>(a)(b) )<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb21-174">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">xor</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lambda_to_js</span>( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">XOR</span>(a)(b) )<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb21-175">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">xnor</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lambda_to_js</span>( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">XNOR</span>(a)(b) )</span>
+<span id="cb21-176">      })</span>
+<span id="cb21-177">    })</span>
+<span id="cb21-178">  })</span>
+<span id="cb21-179"></span>
+<span id="cb21-180">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> output</span>
+<span id="cb21-181">}</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-21" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22" data-startfrom="186" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 185;"><span id="cb22-186">Inputs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">table</span>(part_1_truth_table)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-22" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<hr>
+<p>Great! We have created a full lambda calculus implementation of some logic gates! Now, this may seem trivial, but consider what is happening under the hood - we are using only functions to represent both values and operations.</p>
+<p>As you’ll see next time, this can spiral out of control very quickly once we take a look at representing numbers and more complex operations.</p>
+<p>-CH</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Inspired by <a href="http://hexatlas.com/entries/7">Eric Wastl’s</a> and <a href="https://www.driverlesscrocodile.com/tools-and-techniques/lambda-calculus-for-people-a-step-behind-me-2-boolean-logic/">Stuart Patience’s</a> posts.↩︎</p></li>
+</ol>
+</section></div> ]]></description>
+  <category>OJS</category>
+  <guid>https://www.blog.connorhanan.com/posts/20250430-lambda-calculus/</guid>
+  <pubDate>Wed, 30 Apr 2025 04:00:00 GMT</pubDate>
+</item>
 <item>
   <title>2024 Day 7: Bridge Repair</title>
-  <link>https://syrchanan.quarto.pub/posts/20241207-advent-of-code/</link>
+  <link>https://www.blog.connorhanan.com/posts/20241207-advent-of-code/</link>
   <description><![CDATA[ 
 
 
@@ -618,12 +1577,12 @@ font-style: inherit;">0</span>)</span></code></pre></div>
  ]]></description>
   <category>Advent of Code</category>
   <category>OJS</category>
-  <guid>https://syrchanan.quarto.pub/posts/20241207-advent-of-code/</guid>
+  <guid>https://www.blog.connorhanan.com/posts/20241207-advent-of-code/</guid>
   <pubDate>Sat, 07 Dec 2024 05:00:00 GMT</pubDate>
 </item>
 <item>
   <title>2024 Day 6: Guard Gallivant</title>
-  <link>https://syrchanan.quarto.pub/posts/20241206-advent-of-code/</link>
+  <link>https://www.blog.connorhanan.com/posts/20241206-advent-of-code/</link>
   <description><![CDATA[ 
 
 
@@ -1543,12 +2502,12 @@ font-style: inherit;">// duped the start position</span></span>
  ]]></description>
   <category>Advent of Code</category>
   <category>OJS</category>
-  <guid>https://syrchanan.quarto.pub/posts/20241206-advent-of-code/</guid>
+  <guid>https://www.blog.connorhanan.com/posts/20241206-advent-of-code/</guid>
   <pubDate>Fri, 06 Dec 2024 05:00:00 GMT</pubDate>
 </item>
 <item>
   <title>2024 Day 5: Print Queue</title>
-  <link>https://syrchanan.quarto.pub/posts/20241205-advent-of-code/</link>
+  <link>https://www.blog.connorhanan.com/posts/20241205-advent-of-code/</link>
   <description><![CDATA[ 
 
 
@@ -2243,12 +3202,12 @@ font-style: inherit;">0</span>)</span>
  ]]></description>
   <category>Advent of Code</category>
   <category>OJS</category>
-  <guid>https://syrchanan.quarto.pub/posts/20241205-advent-of-code/</guid>
+  <guid>https://www.blog.connorhanan.com/posts/20241205-advent-of-code/</guid>
   <pubDate>Thu, 05 Dec 2024 05:00:00 GMT</pubDate>
 </item>
 <item>
   <title>2024 Day 4: Ceres Search</title>
-  <link>https://syrchanan.quarto.pub/posts/20241204-advent-of-code/</link>
+  <link>https://www.blog.connorhanan.com/posts/20241204-advent-of-code/</link>
   <description><![CDATA[ 
 
 
@@ -3507,12 +4466,12 @@ font-style: inherit;">length</span></span>
  ]]></description>
   <category>Advent of Code</category>
   <category>OJS</category>
-  <guid>https://syrchanan.quarto.pub/posts/20241204-advent-of-code/</guid>
+  <guid>https://www.blog.connorhanan.com/posts/20241204-advent-of-code/</guid>
   <pubDate>Wed, 04 Dec 2024 05:00:00 GMT</pubDate>
 </item>
 <item>
   <title>2024 Day 3: Mull it Over</title>
-  <link>https://syrchanan.quarto.pub/posts/20241203-advent-of-code/</link>
+  <link>https://www.blog.connorhanan.com/posts/20241203-advent-of-code/</link>
   <description><![CDATA[ 
 
 
@@ -3993,12 +4952,12 @@ font-style: inherit;">0</span>)</span>
  ]]></description>
   <category>Advent of Code</category>
   <category>OJS</category>
-  <guid>https://syrchanan.quarto.pub/posts/20241203-advent-of-code/</guid>
+  <guid>https://www.blog.connorhanan.com/posts/20241203-advent-of-code/</guid>
   <pubDate>Tue, 03 Dec 2024 05:00:00 GMT</pubDate>
 </item>
 <item>
   <title>2024 Day 2: Red-Nosed Reports</title>
-  <link>https://syrchanan.quarto.pub/posts/20241202-advent-of-code/</link>
+  <link>https://www.blog.connorhanan.com/posts/20241202-advent-of-code/</link>
   <description><![CDATA[ 
 
 
@@ -4359,12 +5318,12 @@ font-style: inherit;">sum</span>()</span></code></pre></div>
  ]]></description>
   <category>Advent of Code</category>
   <category>R</category>
-  <guid>https://syrchanan.quarto.pub/posts/20241202-advent-of-code/</guid>
+  <guid>https://www.blog.connorhanan.com/posts/20241202-advent-of-code/</guid>
   <pubDate>Mon, 02 Dec 2024 05:00:00 GMT</pubDate>
 </item>
 <item>
   <title>2024 Day 1: Historian Hysteria</title>
-  <link>https://syrchanan.quarto.pub/posts/20241201-advent-of-code/</link>
+  <link>https://www.blog.connorhanan.com/posts/20241201-advent-of-code/</link>
   <description><![CDATA[ 
 
 
@@ -4946,12 +5905,12 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
   <category>Advent of Code</category>
   <category>OJS</category>
   <category>R</category>
-  <guid>https://syrchanan.quarto.pub/posts/20241201-advent-of-code/</guid>
+  <guid>https://www.blog.connorhanan.com/posts/20241201-advent-of-code/</guid>
   <pubDate>Sun, 01 Dec 2024 05:00:00 GMT</pubDate>
 </item>
 <item>
   <title>What’s Next?</title>
-  <link>https://syrchanan.quarto.pub/posts/20241115-whats-next/</link>
+  <link>https://www.blog.connorhanan.com/posts/20241115-whats-next/</link>
   <description><![CDATA[ 
 
 
@@ -4977,12 +5936,12 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
  ]]></description>
   <category>Update</category>
   <category>Advent of Code</category>
-  <guid>https://syrchanan.quarto.pub/posts/20241115-whats-next/</guid>
+  <guid>https://www.blog.connorhanan.com/posts/20241115-whats-next/</guid>
   <pubDate>Fri, 15 Nov 2024 05:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Baker’s Guard Zouaves</title>
-  <link>https://syrchanan.quarto.pub/posts/20230917-baker-zouave/</link>
+  <link>https://www.blog.connorhanan.com/posts/20230917-baker-zouave/</link>
   <description><![CDATA[ 
 
 
@@ -5001,12 +5960,12 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
 <h3 class="anchored" data-anchor-id="zouaves-in-the-us">Zouaves in the US</h3>
 <p>As the Zouaves gained fame in the French army during their conquest of Africa, they became renowned as an elite fighting corps. Word quickly spread, through observers and military officials alike - soon everyone was talking about the fearsome Zouaves.</p>
 <p>This included Elmer E. Ellsworth, an enterprising individual who obtained a Zouave training manual from his friend, who was a surgeon in the French North-African Zouave units. He then formed a touring company, which performed light infantry drills all over the nation, drumming up even more interest in these “foreign” soldiers.</p>
-<p><img src="https://syrchanan.quarto.pub/posts/20230917-baker-zouave/ElmerEllsworthphoto01.jpg" class="img-fluid"></p>
+<p><img src="https://www.blog.connorhanan.com/posts/20230917-baker-zouave/ElmerEllsworthphoto01.jpg" class="img-fluid"></p>
 <p>When the Civil War broke out, multiple units of Zouaves were formed, almost exclusively as militia units. Ellsworth’s own touring company became the 11th NY “Fire Zouaves”, on account of their red-trimmed uniforms.</p>
 <p>Zouave uniforms were very similar to those of the French-Algerian troops: fez, baggy chasseur trousers, a shell jacket (which is open-fronted), jambieres (or gaiters), etc. These styles were often trimmed in red, both after the 11th NY and the original Zouaves - though they also had many swirls of embroidery as embellishments.</p>
-<p><img src="https://syrchanan.quarto.pub/posts/20230917-baker-zouave/zouave.jpg" class="img-fluid"></p>
+<p><img src="https://www.blog.connorhanan.com/posts/20230917-baker-zouave/zouave.jpg" class="img-fluid"></p>
 <p>Fashion of the US during this time was also influenced by the famed Zouaves - tales of their exploits spread throughout the press, and many people wanted to dress like them as a result. Of course, men’s fashion was taken in with the designs, but more surprising was women’s fashion was as well. Many open-front Zouave-style jackets were worn as outerwear (as seen below), and the swirling, bold styles were also adopted into formal wear.</p>
-<p><img src="https://syrchanan.quarto.pub/posts/20230917-baker-zouave/zouave_womens.jpg" class="img-fluid"></p>
+<p><img src="https://www.blog.connorhanan.com/posts/20230917-baker-zouave/zouave_womens.jpg" class="img-fluid"></p>
 </section>
 <section id="bakers-guard-zouaves" class="level3">
 <h3 class="anchored" data-anchor-id="bakers-guard-zouaves">Baker’s Guard Zouaves</h3>
@@ -5015,7 +5974,7 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
 <p>Company K was raised from volunteers in Philadelphia by Cpt. William Davis, who was reported in the newspaper to be from the “gallant New York 69th”, another famed Irish regiment (from which the 69th Pennsylvania took it’s name).</p>
 <p>The two regiments were named the “Baker’s Guard” Zouaves after Col. Edward D. Baker, who led the Philadelphia Brigade (of which the 69th Pennsylvania was assigned to).</p>
 <p>These two companies, in the Zouave fashion, also had an extremely distinctive uniform. Similar to those of the 11th NY Fire Zouaves, and the 72nd and 95th Pennsylvania regiments of Zouaves, the Baker’s Guard Zouaves all wore the shortened shell jacket, vest, chasseur trousers, and jambieres; however, there were slight differences. As the rest of the units were trimmed in red, the Baker’s Guard uniforms were all trimmed in green, symbolic of their predominantly Irish heritage. Also, they opted to wear a kepi hat, also trimmed in green - rather than the traditional fez.</p>
-<p><img src="https://syrchanan.quarto.pub/posts/20230917-baker-zouave/baker_zouave.png" class="img-fluid"></p>
+<p><img src="https://www.blog.connorhanan.com/posts/20230917-baker-zouave/baker_zouave.png" class="img-fluid"></p>
 <p>With such a different uniform, in the midst of war, one might assume they were only privately purchased - however, there are records of reissue:</p>
 <blockquote class="blockquote">
 <p>This uniform was approved for reissue by the federal quartermasters in April of 1862, when Lieutenant Colonel George H. Crossman, Deputy Quartermaster at Philadelphia approved the manufacture of 160 uniforms “of the same pattern” which were known by the manufacturing firms of Rock &amp; Wilson and Jacob Reed.</p>
@@ -5036,13 +5995,13 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
   <category>Civil War</category>
   <category>Reenacting</category>
   <category>History</category>
-  <guid>https://syrchanan.quarto.pub/posts/20230917-baker-zouave/</guid>
+  <guid>https://www.blog.connorhanan.com/posts/20230917-baker-zouave/</guid>
   <pubDate>Sun, 17 Sep 2023 04:00:00 GMT</pubDate>
-  <media:content url="https://syrchanan.quarto.pub/posts/20230917-baker-zouave/ElmerEllsworthphoto01.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://www.blog.connorhanan.com/posts/20230917-baker-zouave/ElmerEllsworthphoto01.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>The Definitive Ranking of California Burritos</title>
-  <link>https://syrchanan.quarto.pub/posts/20230910-california-burritos/</link>
+  <link>https://www.blog.connorhanan.com/posts/20230910-california-burritos/</link>
   <description><![CDATA[ 
 
 
@@ -5077,13 +6036,13 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
  ]]></description>
   <category>Food</category>
   <category>Ranking</category>
-  <guid>https://syrchanan.quarto.pub/posts/20230910-california-burritos/</guid>
+  <guid>https://www.blog.connorhanan.com/posts/20230910-california-burritos/</guid>
   <pubDate>Sun, 10 Sep 2023 04:00:00 GMT</pubDate>
-  <media:content url="https://syrchanan.quarto.pub/posts/20230910-california-burritos/vallartas.jfif" medium="image" type="image/jpeg"/>
+  <media:content url="https://www.blog.connorhanan.com/posts/20230910-california-burritos/vallartas.jfif" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Cable News Coverage of the NY Trump Arraignment</title>
-  <link>https://syrchanan.quarto.pub/posts/20230408-trump-arraignment-ny/</link>
+  <link>https://www.blog.connorhanan.com/posts/20230408-trump-arraignment-ny/</link>
   <description><![CDATA[ 
 
 
@@ -5107,7 +6066,7 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
 <p>In my analysis, I aggregated all of the closed captions from CNN, FOX and MSNBC between the hours of 7 p.m. and 3 a.m. ET. In the industry, this time period is often referred to as Sales Prime, which is the block of coverage which sees the largest audiences across the board (it extends late in order to capture the West Coast too).</p>
 <p>As a reminder, for each 10-minute block (since that is the granularity of data provided by the GDELT Project), any time the word “Trump” was said, all the words in that block were included. This way, the words most commonly said around “Trump” will be considered. These adjacent words were then lemmatized (cleaned and grouped) and fuzzily combined across networks to find the 200 most common mentions.</p>
 <p>The top words per network are plotted below:</p>
-<p><img src="https://syrchanan.quarto.pub/posts/20230408-trump-arraignment-ny/Trump_indictment_4-3-23.svg" class="img-fluid"></p>
+<p><img src="https://www.blog.connorhanan.com/posts/20230408-trump-arraignment-ny/Trump_indictment_4-3-23.svg" class="img-fluid"></p>
 </section>
 <section id="so-what-does-this-mean" class="level3">
 <h3 class="anchored" data-anchor-id="so-what-does-this-mean">So what does this mean?</h3>
@@ -5142,13 +6101,13 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
   <category>News</category>
   <category>Analysis</category>
   <category>R</category>
-  <guid>https://syrchanan.quarto.pub/posts/20230408-trump-arraignment-ny/</guid>
+  <guid>https://www.blog.connorhanan.com/posts/20230408-trump-arraignment-ny/</guid>
   <pubDate>Sat, 08 Apr 2023 04:00:00 GMT</pubDate>
-  <media:content url="https://syrchanan.quarto.pub/posts/20230408-trump-arraignment-ny/Trump_indictment_4-3-23.svg" medium="image" type="image/svg+xml"/>
+  <media:content url="https://www.blog.connorhanan.com/posts/20230408-trump-arraignment-ny/Trump_indictment_4-3-23.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>Cable News Coverage of the Georgia Runoffs</title>
-  <link>https://syrchanan.quarto.pub/posts/20221211-ga-runoff/</link>
+  <link>https://www.blog.connorhanan.com/posts/20221211-ga-runoff/</link>
   <description><![CDATA[ 
 
 
@@ -5173,7 +6132,7 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
 <p>For each 10-minute block (since that is the granularity of data provided by the GDELT Project), any time the word “election” was said, all the words in that block were included. This way, the words most commonly said around “election” will be considered.</p>
 <p>These adjacent words were then lemmatized (cleaned and grouped) and fuzzily combined across networks to find the 200 most common mentions.</p>
 <p>The top words per network are plotted below:</p>
-<p><img src="https://syrchanan.quarto.pub/posts/20221211-ga-runoff/GA_runoff_plot.svg" class="img-fluid"></p>
+<p><img src="https://www.blog.connorhanan.com/posts/20221211-ga-runoff/GA_runoff_plot.svg" class="img-fluid"></p>
 </section>
 <section id="so-what-does-this-mean" class="level3">
 <h3 class="anchored" data-anchor-id="so-what-does-this-mean">So what does this mean?</h3>
@@ -5200,13 +6159,13 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
   <category>News</category>
   <category>Analysis</category>
   <category>R</category>
-  <guid>https://syrchanan.quarto.pub/posts/20221211-ga-runoff/</guid>
+  <guid>https://www.blog.connorhanan.com/posts/20221211-ga-runoff/</guid>
   <pubDate>Sun, 11 Dec 2022 05:00:00 GMT</pubDate>
-  <media:content url="https://syrchanan.quarto.pub/posts/20221211-ga-runoff/GA_runoff_plot.svg" medium="image" type="image/svg+xml"/>
+  <media:content url="https://www.blog.connorhanan.com/posts/20221211-ga-runoff/GA_runoff_plot.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>John Hardy vs. John Henry</title>
-  <link>https://syrchanan.quarto.pub/posts/20221024-john-hardy-vs-henry/</link>
+  <link>https://www.blog.connorhanan.com/posts/20221024-john-hardy-vs-henry/</link>
   <description><![CDATA[ 
 
 
@@ -5214,7 +6173,7 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://syrchanan.quarto.pub/posts/20221024-john-hardy-vs-henry/hardy-hanging.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="John Hardy on the gallows in WV, circa 1894."></p>
+<p><img src="https://www.blog.connorhanan.com/posts/20221024-john-hardy-vs-henry/hardy-hanging.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="John Hardy on the gallows in WV, circa 1894."></p>
 </figure>
 </div>
 <section id="the-ballads" class="level3">
@@ -5285,9 +6244,9 @@ font-style: inherit;">pull</span>(total)</span></code></pre></div>
 </section></div> ]]></description>
   <category>Music</category>
   <category>History</category>
-  <guid>https://syrchanan.quarto.pub/posts/20221024-john-hardy-vs-henry/</guid>
+  <guid>https://www.blog.connorhanan.com/posts/20221024-john-hardy-vs-henry/</guid>
   <pubDate>Mon, 24 Oct 2022 04:00:00 GMT</pubDate>
-  <media:content url="https://syrchanan.quarto.pub/posts/20221024-john-hardy-vs-henry/hardy-hanging.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://www.blog.connorhanan.com/posts/20221024-john-hardy-vs-henry/hardy-hanging.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>

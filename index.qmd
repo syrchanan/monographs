@@ -1,25 +1,22 @@
 ---
-title: "monographs"
-image: ./images/about.jpg
-about:
-  template: jolla
-  links:
-    - icon: stickies
-      text: Posts
-      href: blog.qmd
-    - icon: globe
-      text: Website
-      href: https://www.connorhanan.com
-    - icon: github
-      text: Github
-      href: https://github.com/syrchanan
-    - icon: linkedin
-      text: LinkedIn
-      href: https://www.linkedin.com/in/connorhanan/
+listing:
+  id: post-listing
+  contents: posts
+  fields: [date, title, subtitle, categories, reading-time]
+  image-height: 150px
+  sort: "date desc"
+  type: grid
+  categories: true
+  sort-ui: true
+  filter-ui: true
+  page-size: 15
+  feed: true
+page-layout: full
+title-block-banner: true
 ---
 
-This [blog](blog.qmd) is a collection of various short studies on topics that interest me, which I publish sporadically.
+# Posts
 
-Click the "posts" button in the top right corner (or below) to browse all posts.
+::: {#post-listing}
 
-For further information about me, please visit my website, linked below.
+:::

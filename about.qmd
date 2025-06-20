@@ -1,0 +1,25 @@
+---
+title: "monographs"
+image: ./images/about.jpg
+about:
+  template: jolla
+  links:
+    - icon: file-person
+      text: About
+      href: index.qmd
+    - icon: globe
+      text: Website
+      href: https://www.connorhanan.com
+    - icon: github
+      text: Github
+      href: https://github.com/syrchanan
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/connorhanan/
+---
+
+This [blog](index.qmd) is a collection of various short studies on topics that interest me, which I publish sporadically.
+
+Click the "posts" button below, or go back to the homepage to browse all posts.
+
+For further information about me, please visit my website, linked below.

@@ -82,5 +82,23 @@
   },
   "posts/20241207-advent-of-code/index.qmd": {
     "index.html": "cbca9980"
+  },
+  "posts/20250531-lambda-calculus-1/index.qmd": {
+    "index.html": "2182ecb8"
+  },
+  "posts/20250415-lambda-calculus-1/index.qmd": {
+    "index.html": "b5191b24"
+  },
+  "posts/20250501-lambda-calculus/index.qmd": {
+    "index.html": "c33c5547"
+  },
+  "posts/20250415-lambda-calculus/index.qmd": {
+    "index.html": "177305b0"
+  },
+  "posts/20250430-lambda-calculus/index.qmd": {
+    "index.html": "f4afbe16"
+  },
+  "posts/20250520-lambda-calculus/index.qmd": {
+    "index.html": "66112d2a"
   }
 }

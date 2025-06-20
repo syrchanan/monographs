@@ -7,11 +7,12 @@ resources:
 
 website:
   title: "monographs"
-  site-url: https://syrchanan.quarto.pub/
+  site-url: https://www.blog.connorhanan.com/
   description: "A collection of various short studies"
   navbar:
     right:
-      - blog.qmd
+      - text: "About"
+        href: about.qmd
       - icon: github
         href: https://github.com/syrchanan
       - icon: globe
@@ -20,7 +21,7 @@ website:
         href: https://www.linkedin.com/in/connorhanan/
     left:
       - icon: rss
-        href: blog.xml
+        href: index.xml
   favicon: ./images/favicon.png
 format:
   html:
