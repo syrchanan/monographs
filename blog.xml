@@ -10,10 +10,10 @@
 <atom:link href="https://syrchanan.quarto.pub/blog.xml" rel="self" type="application/rss+xml"/>
 <description>A collection of various short studies</description>
 <generator>quarto-1.7.29</generator>
-<lastBuildDate>Thu, 01 May 2025 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 20 May 2025 04:00:00 GMT</lastBuildDate>
 <item>
   <title>Exploring Lambda Calculus (Part 2)</title>
-  <link>https://syrchanan.quarto.pub/posts/20250501-lambda-calculus/</link>
+  <link>https://syrchanan.quarto.pub/posts/20250520-lambda-calculus/</link>
   <description><![CDATA[ 
 
 
@@ -21,7 +21,7 @@
 
 <section id="recap" class="level2">
 <h2 class="anchored" data-anchor-id="recap">Recap</h2>
-<p>Last time, we left off with our first truth table exploring all the logic gate test permutations. If you missed it, <a href="../../posts/20250415-lambda-calculus/index.html">catch up here</a> before moving on to this post’s topic: math and simple calculation. <sup>1</sup></p>
+<p>Last time, we left off with our first truth table exploring all the logic gate test permutations. If you missed it, <a href="../20250415-lambda-calculus/index.qmd">catch up here</a> before moving on to this post’s topic: math and simple calculation. <sup>1</sup></p>
 </section>
 <section id="church-numerals" class="level2">
 <h2 class="anchored" data-anchor-id="church-numerals">Church Numerals</h2>
@@ -410,12 +410,12 @@ font-style: inherit;">table</span>(part_2_math_table)</span></code></pre></div>
 </ol>
 </section></div> ]]></description>
   <category>OJS</category>
-  <guid>https://syrchanan.quarto.pub/posts/20250501-lambda-calculus/</guid>
-  <pubDate>Thu, 01 May 2025 04:00:00 GMT</pubDate>
+  <guid>https://syrchanan.quarto.pub/posts/20250520-lambda-calculus/</guid>
+  <pubDate>Tue, 20 May 2025 04:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Exploring Lambda Calculus</title>
-  <link>https://syrchanan.quarto.pub/posts/20250415-lambda-calculus/</link>
+  <link>https://syrchanan.quarto.pub/posts/20250430-lambda-calculus/</link>
   <description><![CDATA[ 
 
 
@@ -967,8 +967,8 @@ font-style: inherit;">table</span>(part_1_truth_table)</span></code></pre></div>
 </ol>
 </section></div> ]]></description>
   <category>OJS</category>
-  <guid>https://syrchanan.quarto.pub/posts/20250415-lambda-calculus/</guid>
-  <pubDate>Tue, 15 Apr 2025 04:00:00 GMT</pubDate>
+  <guid>https://syrchanan.quarto.pub/posts/20250430-lambda-calculus/</guid>
+  <pubDate>Wed, 30 Apr 2025 04:00:00 GMT</pubDate>
 </item>
 <item>
   <title>2024 Day 7: Bridge Repair</title>
