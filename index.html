@@ -31,10 +31,13 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="././images/favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
@@ -67,15 +70,73 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-post-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-subtitle','listing-categories','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-post-listing'] = new List('listing-post-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
-</head>
+<link rel="alternate" type="application/rss+xml" title="monographs" href="index.xml" data-external="1"></head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -90,15 +151,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="./blog.xml"> <i class="bi bi-rss" role="img">
+    <a class="nav-link" href="./index.xml"> <i class="bi bi-rss" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
-<span class="menu-text">posts</span></a>
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/syrchanan"> <i class="bi bi-github" role="img">
@@ -123,50 +184,456 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block"></header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(15)</span></div><div class="category" data-category="QWR2ZW50JTIwb2YlMjBDb2Rl">Advent of Code <span class="quarto-category-count">(8)</span></div><div class="category" data-category="QW5hbHlzaXM=">Analysis <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Q2l2aWwlMjBXYXI=">Civil War <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Rm9vZA==">Food <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SGlzdG9yeQ==">History <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TXVzaWM=">Music <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TmV3cw==">News <span class="quarto-category-count">(2)</span></div><div class="category" data-category="T0pT">OJS <span class="quarto-category-count">(8)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(4)</span></div><div class="category" data-category="UmFua2luZw==">Ranking <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVlbmFjdGluZw==">Reenacting <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VXBkYXRl">Update <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
-<div class="quarto-about-jolla">
-  <img src="./images/about.jpg" class="about-image
-  round " style="height: 15em; width: 15em;">
- <header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">monographs</h1>
-</div>
-<div class="quarto-title-meta">
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+<section id="posts" class="level1">
+<h1>Posts</h1>
+<div id="listing-post-listing" class="quarto-listing quarto-listing-container-grid">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+    <select id="listing-post-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-post-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+      <option value="" disabled="" selected="" hidden="">Order By</option>
+      <option value="index" data-direction="asc">Default</option>
+      <option value="listing-title" data-direction="asc">
+        Title
+      </option>
+      <option value="listing-date-sort" data-direction="asc">
+        Date - Oldest
+      </option>
+      <option value="listing-date-sort" data-direction="desc">
+        Date - Newest
+      </option>
+    </select>
   </div>
-</header><main class="content" id="quarto-document-content">
-<p>This <a href="./blog.html">blog</a> is a collection of various short studies on topics that interest me, which I publish sporadically.</p>
-<p>Click the “posts” button in the top right corner (or below) to browse all posts.</p>
-<p>For further information about me, please visit my website, linked below.</p>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+</div>
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="T0pT" data-listing-date-sort="1747713600000" data-listing-file-modified-sort="1750441023086" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="955">
+<a href="./posts/20250520-lambda-calculus/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title" data-anchor-id="posts">
+Exploring Lambda Calculus (Part 2)
+</h5>
+<div class="card-subtitle listing-subtitle">
+Mucking Around with Pre-Turing Computer Programming
+</div>
+<div class="listing-reading-time card-text text-muted">5 min</div>
+<div class="listing-categories">
 
+<div class="listing-category" onclick="window.quartoListingCategory('T0pT'); return false;">OJS</div>
 
-</main> 
-  <hr class="about-sep">
-   <div class="about-links">
-  <a href="/blog.html" class="about-link" rel="" target="">
-    <i class="bi bi-stickies"></i>
-     <span class="about-link-text">Posts</span>
-  </a>
-  <a href="https://www.connorhanan.com" class="about-link" rel="" target="">
-    <i class="bi bi-globe"></i>
-     <span class="about-link-text">Website</span>
-  </a>
-  <a href="https://github.com/syrchanan" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">Github</span>
-  </a>
-  <a href="https://www.linkedin.com/in/connorhanan/" class="about-link" rel="" target="">
-    <i class="bi bi-linkedin"></i>
-     <span class="about-link-text">LinkedIn</span>
-  </a>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+May 20, 2025
 </div>
 </div>
- <!-- /main -->
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="T0pT" data-listing-date-sort="1745985600000" data-listing-file-modified-sort="1750440650055" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="917">
+<a href="./posts/20250430-lambda-calculus/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Exploring Lambda Calculus
+</h5>
+<div class="card-subtitle listing-subtitle">
+Mucking Around with Pre-Turing Computer Programming
+</div>
+<div class="listing-reading-time card-text text-muted">5 min</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('T0pT'); return false;">OJS</div>
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Apr 30, 2025
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="QWR2ZW50JTIwb2YlMjBDb2RlJTJDT0pT" data-listing-date-sort="1733547600000" data-listing-file-modified-sort="1750443590790" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="36" data-listing-word-count-sort="7132">
+<a href="./posts/20241207-advent-of-code/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+2024 Day 7: Bridge Repair
+</h5>
+<div class="card-subtitle listing-subtitle">
+Advent of Code
+</div>
+<div class="listing-reading-time card-text text-muted">36 min</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWR2ZW50JTIwb2YlMjBDb2Rl'); return false;">Advent of Code</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('T0pT'); return false;">OJS</div>
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Dec 7, 2024
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="3" data-categories="QWR2ZW50JTIwb2YlMjBDb2RlJTJDT0pT" data-listing-date-sort="1733461200000" data-listing-file-modified-sort="1750291257257" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1528">
+<a href="./posts/20241206-advent-of-code/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+2024 Day 6: Guard Gallivant
+</h5>
+<div class="card-subtitle listing-subtitle">
+Advent of Code
+</div>
+<div class="listing-reading-time card-text text-muted">8 min</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWR2ZW50JTIwb2YlMjBDb2Rl'); return false;">Advent of Code</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('T0pT'); return false;">OJS</div>
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Dec 6, 2024
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="4" data-categories="QWR2ZW50JTIwb2YlMjBDb2RlJTJDT0pT" data-listing-date-sort="1733374800000" data-listing-file-modified-sort="1750291257256" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="603">
+<a href="./posts/20241205-advent-of-code/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+2024 Day 5: Print Queue
+</h5>
+<div class="card-subtitle listing-subtitle">
+Advent of Code
+</div>
+<div class="listing-reading-time card-text text-muted">4 min</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWR2ZW50JTIwb2YlMjBDb2Rl'); return false;">Advent of Code</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('T0pT'); return false;">OJS</div>
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Dec 5, 2024
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="5" data-categories="QWR2ZW50JTIwb2YlMjBDb2RlJTJDT0pT" data-listing-date-sort="1733288400000" data-listing-file-modified-sort="1750291257256" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1834">
+<a href="./posts/20241204-advent-of-code/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+2024 Day 4: Ceres Search
+</h5>
+<div class="card-subtitle listing-subtitle">
+Advent of Code
+</div>
+<div class="listing-reading-time card-text text-muted">10 min</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWR2ZW50JTIwb2YlMjBDb2Rl'); return false;">Advent of Code</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('T0pT'); return false;">OJS</div>
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Dec 4, 2024
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="6" data-categories="QWR2ZW50JTIwb2YlMjBDb2RlJTJDT0pT" data-listing-date-sort="1733202000000" data-listing-file-modified-sort="1750291257256" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="781">
+<a href="./posts/20241203-advent-of-code/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+2024 Day 3: Mull it Over
+</h5>
+<div class="card-subtitle listing-subtitle">
+Advent of Code
+</div>
+<div class="listing-reading-time card-text text-muted">4 min</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWR2ZW50JTIwb2YlMjBDb2Rl'); return false;">Advent of Code</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('T0pT'); return false;">OJS</div>
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Dec 3, 2024
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="7" data-categories="QWR2ZW50JTIwb2YlMjBDb2RlJTJDUg==" data-listing-date-sort="1733115600000" data-listing-file-modified-sort="1750291257255" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="32" data-listing-word-count-sort="6244">
+<a href="./posts/20241202-advent-of-code/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+2024 Day 2: Red-Nosed Reports
+</h5>
+<div class="card-subtitle listing-subtitle">
+Advent of Code
+</div>
+<div class="listing-reading-time card-text text-muted">32 min</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWR2ZW50JTIwb2YlMjBDb2Rl'); return false;">Advent of Code</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Dec 2, 2024
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="8" data-categories="QWR2ZW50JTIwb2YlMjBDb2RlJTJDT0pTJTJDUg==" data-listing-date-sort="1733029200000" data-listing-file-modified-sort="1750291257255" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="39" data-listing-word-count-sort="7776">
+<a href="./posts/20241201-advent-of-code/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+2024 Day 1: Historian Hysteria
+</h5>
+<div class="card-subtitle listing-subtitle">
+Advent of Code
+</div>
+<div class="listing-reading-time card-text text-muted">39 min</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWR2ZW50JTIwb2YlMjBDb2Rl'); return false;">Advent of Code</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('T0pT'); return false;">OJS</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Dec 1, 2024
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="9" data-categories="VXBkYXRlJTJDQWR2ZW50JTIwb2YlMjBDb2Rl" data-listing-date-sort="1731646800000" data-listing-file-modified-sort="1750291257255" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="250">
+<a href="./posts/20241115-whats-next/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+What’s Next?
+</h5>
+<div class="card-subtitle listing-subtitle">
+Back for More
+</div>
+<div class="listing-reading-time card-text text-muted">2 min</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('VXBkYXRl'); return false;">Update</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWR2ZW50JTIwb2YlMjBDb2Rl'); return false;">Advent of Code</div>
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Nov 15, 2024
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="10" data-categories="Q2l2aWwlMjBXYXIlMkNSZWVuYWN0aW5nJTJDSGlzdG9yeQ==" data-listing-date-sort="1694923200000" data-listing-file-modified-sort="1750443606305" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="821">
+<a href="./posts/20230917-baker-zouave/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Baker’s Guard Zouaves
+</h5>
+<div class="card-subtitle listing-subtitle">
+The Irish Skirmishers
+</div>
+<div class="listing-reading-time card-text text-muted">5 min</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q2l2aWwlMjBXYXI='); return false;">Civil War</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVlbmFjdGluZw=='); return false;">Reenacting</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SGlzdG9yeQ=='); return false;">History</div>
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Sep 17, 2023
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="11" data-categories="Rm9vZCUyQ1Jhbmtpbmc=" data-listing-date-sort="1694318400000" data-listing-file-modified-sort="1750291257252" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="227">
+<a href="./posts/20230910-california-burritos/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+The Definitive Ranking of California Burritos
+</h5>
+<div class="card-subtitle listing-subtitle">
+The Best and Where to Get Them
+</div>
+<div class="listing-reading-time card-text text-muted">2 min</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Rm9vZA=='); return false;">Food</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmFua2luZw=='); return false;">Ranking</div>
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Sep 10, 2023
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="12" data-categories="TmV3cyUyQ0FuYWx5c2lzJTJDUg==" data-listing-date-sort="1680926400000" data-listing-file-modified-sort="1750291257251" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1056">
+<a href="./posts/20230408-trump-arraignment-ny/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Cable News Coverage of the NY Trump Arraignment
+</h5>
+<div class="card-subtitle listing-subtitle">
+A deep dive in content analysis
+</div>
+<div class="listing-reading-time card-text text-muted">6 min</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('TmV3cw=='); return false;">News</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QW5hbHlzaXM='); return false;">Analysis</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Apr 8, 2023
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="13" data-categories="TmV3cyUyQ0FuYWx5c2lzJTJDUg==" data-listing-date-sort="1670734800000" data-listing-file-modified-sort="1750291257251" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="748">
+<a href="./posts/20221211-ga-runoff/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Cable News Coverage of the Georgia Runoffs
+</h5>
+<div class="card-subtitle listing-subtitle">
+A deep dive in content analysis
+</div>
+<div class="listing-reading-time card-text text-muted">4 min</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('TmV3cw=='); return false;">News</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QW5hbHlzaXM='); return false;">Analysis</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Dec 11, 2022
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="14" data-categories="TXVzaWMlMkNIaXN0b3J5" data-listing-date-sort="1666584000000" data-listing-file-modified-sort="1750291257250" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="981">
+<a href="./posts/20221024-john-hardy-vs-henry/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+John Hardy vs.&nbsp;John Henry
+</h5>
+<div class="card-subtitle listing-subtitle">
+Disentangling the Ballads
+</div>
+<div class="listing-reading-time card-text text-muted">5 min</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('TXVzaWM='); return false;">Music</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SGlzdG9yeQ=='); return false;">History</div>
+
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Oct 24, 2022
+</div>
+</div>
+</div>
+</div></a>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
@@ -230,7 +697,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/syrchanan\.quarto\.pub\/");
+        var filterRegex = new RegExp("https:\/\/www\.blog\.connorhanan\.com\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
