@@ -18,13 +18,14 @@ draft: false
 
 Last time, we left off with our first truth table exploring all the logic gate test permutations. If you missed it, [catch up here](../20250430-lambda-calculus/index.qmd) before moving on to this post's topic: math and simple calculation. [^1]
 
+[^1]: Inspired by [Eric Wastl's](http://hexatlas.com/entries/7) and [Stuart Patience's](https://www.driverlesscrocodile.com/tools-and-techniques/lambda-calculus-for-people-a-step-behind-me-2-boolean-logic/) posts.
+
 ## Church Numerals
 
 Now that we have basic operations and logic gates, we need to advance past 1's and 0's to be able to represent more complex numerals. The difficulty here is going to be representing numerals with functions, for a few reasons:
 
-1. There are an infinite number of numerals to represent
-2. How do we account for decimals, imaginaries, &c?
-3. How can we combine the numerals using different functions, without defining the numerals themselves?
+1.  There are an infinite number of numerals to represent
+2.  How can we combine the numerals using different functions, without defining the numerals themselves?
 
 We are going to explore Church Numerals, which define a numeral *N* by encapsulating a function *N* times. This is pretty cool, as we are then no longer representing the numeral *N* as a "count"; instead, it becomes more of a "timer". Let's take a look:
 
@@ -52,7 +53,7 @@ N4 = f => a => f(f(f(f(a)))) // apply f 4 times
 
 ## Mathematical Operations
 
-Similar to the idea of a "wrapper" function from above (see `NOT()`), we need to define functions that will wrap around numbers to perform operations on them.
+Similar to the idea of a "wrapper" function from last post (see `NOT()`), we need to define functions that will wrap around numbers to perform operations on them.
 
 The first of these is the most simple, the successor function `SUCC()`. A fancy name for a basic operation, all this does is increment the number by 1. All it really is going to do is add another layer of wrapping around the number -- that way, when we count the layers by "time", our count, and therefore value, will have increased by 1.
 
@@ -139,5 +140,3 @@ Woohoo! We've got some basic operations working now. However, you might have not
 Next time, we'll take a look at how to reverse the direction with subtraction, and the underlying data structures that that will require.
 
 -CH
-
-[^1]: Inspired by [Eric Wastl's](http://hexatlas.com/entries/7) and [Stuart Patience's](https://www.driverlesscrocodile.com/tools-and-techniques/lambda-calculus-for-people-a-step-behind-me-2-boolean-logic/) posts.

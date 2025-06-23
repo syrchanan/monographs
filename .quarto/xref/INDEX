@@ -103,5 +103,8 @@
   },
   "posts/20250615-lambda-calculus/index.qmd": {
     "index.html": "10b0300a"
+  },
+  "posts/drafts/aoc_template.qmd": {
+    "aoc_template.html": "a6e950ca"
   }
 }
