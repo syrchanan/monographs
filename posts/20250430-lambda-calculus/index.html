@@ -273,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>This may not seem like a lot, or more like a regurgitation of the sample switch return functions above, but this is critical to the base of our logic. The above are our replication of boolean states, which are identical to <code>RETURN_FIRST</code> and <code>RETURN_SECOND</code> – in fact, as we go on, it will be helpful that <code>TRUE</code> will always return the first argument, and <code>FALSE</code> the second.</p>
+<p>This may not seem like a lot, or more like a regurgitation of the sample switch return functions above, but this is critical to the base of our logic. The above are our replication of boolean states, which are identical to <code>RETURN_FIRST</code> and <code>RETURN_SECOND</code> – in fact, as we go on, it will be helpful to keep in mind that <code>TRUE</code> will always return the first argument, and <code>FALSE</code> the second.</p>
 <p>Naturally, these booleans can be combined together, creating <code>AND</code>/<code>OR</code> logic gates:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8" data-startfrom="73" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 72;"><span id="cb8-73"><a href="#cb8-73"></a>AND <span class="op">=</span> c <span class="kw">=&gt;</span> d <span class="kw">=&gt;</span> <span class="fu">c</span>(d)(c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
