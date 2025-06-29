@@ -1,9 +1,10 @@
 ---
 title: "A Visualization About Nothing"
 subtitle: "D3: Exploring the Relationships of Seinfeld"
-date: "2025-06-30"
+date: "2025-06-29"
 code-overflow: wrap
 code-fold: true
+code-summary: "Show the Code"
 format: 
   html: 
     code-line-numbers: false
@@ -11,7 +12,7 @@ categories:
   - OJS
   - TV
   - Analysis
-draft: true
+draft: false
 ---
 
 Across all of Seinfeld, we see many relationships develop between the main four characters and many others. Explore the visualisation below to view all the many friends, family, girlfriends/boyfriends, and foes of the series!

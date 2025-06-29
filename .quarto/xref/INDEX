@@ -106,5 +106,8 @@
   },
   "posts/drafts/aoc_template.qmd": {
     "aoc_template.html": "a6e950ca"
+  },
+  "posts/20250629-seinfeld-relationships/index.qmd": {
+    "index.html": "bb4cc1de"
   }
 }
