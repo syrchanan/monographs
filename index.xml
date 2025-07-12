@@ -10,7 +10,931 @@
 <atom:link href="https://www.blog.connorhanan.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>A collection of various short studies</description>
 <generator>quarto-1.7.29</generator>
-<lastBuildDate>Sun, 29 Jun 2025 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 10 Jul 2025 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>2024 Day 8: Resonant Collinearity</title>
+  <link>https://www.blog.connorhanan.com/posts/20250710-advent-of-code/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I’m back with more 2024 Advent of Code! Back in December, I solved about 18/25, though never copied them over from my Observable Notebooks. It’s about time I post them here, so I’ll be both catching up on old days as well as working to finish out the rest of the 2024 puzzles.</p>
+<p>With further ado, let’s get started with <a href="https://adventofcode.com/2024/day/8">day 8</a>!</p>
+<p>First, let’s parse the input – this is fairly standard fare for Advent of Code. Grid parsing is probably one of the most common problem setups, so it’s nothing a little regex can’t fix. However, based on the problem (matching antennae based on matching character sets), I chose to use a <code>Map</code> object type. It could have easily been done with regular objects, but why not try something new?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" data-startfrom="106" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 105;"><span id="cb1-106">input <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {</span>
+<span id="cb1-107">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// split on newlines and separate each char</span></span>
+<span id="cb1-108">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> parsed <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> raw<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">split</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> d<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">split</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>))</span>
+<span id="cb1-109"></span>
+<span id="cb1-110">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// create map of each antenna type</span></span>
+<span id="cb1-111">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> antennae <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> parsed<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">reduce</span>((acc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> nxt<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> row) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> {</span>
+<span id="cb1-112">    nxt<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">forEach</span>((elem<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> col) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> {</span>
+<span id="cb1-113">      <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> (elem <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"."</span>) {</span>
+<span id="cb1-114">        acc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set</span>( </span>
+<span id="cb1-115">            elem<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> </span>
+<span id="cb1-116">            [<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">...</span>acc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">get</span>(elem) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">||</span> []<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> {<span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">row</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> row<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">col</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> col}] </span>
+<span id="cb1-117">        )</span>
+<span id="cb1-118">      }</span>
+<span id="cb1-119">    })</span>
+<span id="cb1-120">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> acc</span>
+<span id="cb1-121">  }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">new</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">Map</span>())</span>
+<span id="cb1-122"></span>
+<span id="cb1-123">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// return map and general grid info</span></span>
+<span id="cb1-124">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> {</span>
+<span id="cb1-125">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">antennae</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> antennae<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> </span>
+<span id="cb1-126">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">nrow</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> parsed<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> </span>
+<span id="cb1-127">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">ncol</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> parsed[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> </span>
+<span id="cb1-128">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">grid</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> parsed</span>
+<span id="cb1-129">  }</span>
+<span id="cb1-130">}</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<section id="part-1" class="level3">
+<h3 class="anchored" data-anchor-id="part-1">Part 1</h3>
+<p>In part 1, we need to find all the possible antinode locations, which are derived from pairs of matching antennae sets. To do so, we’ll need to create a little bit of infrastructure below:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" data-startfrom="140" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 139;"><span id="cb2-140"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pairwise</span>(arrays<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> dupes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">false</span>) {</span>
+<span id="cb2-141">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// recursive so we need a short circuit</span></span>
+<span id="cb2-142">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> (arrays<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">===</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> []</span>
+<span id="cb2-143">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// extract matching item</span></span>
+<span id="cb2-144">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> [first<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">...</span>rest] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> arrays</span>
+<span id="cb2-145">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// get all other pairs recursively</span></span>
+<span id="cb2-146">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> end <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pairwise</span>(rest)</span>
+<span id="cb2-147">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// if we allow dupes, nest them together</span></span>
+<span id="cb2-148">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> other <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> end<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(([first2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> rest2]) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> {</span>
+<span id="cb2-149">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> dupes</span>
+<span id="cb2-150">      <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">?</span> [first2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> [first<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">...</span>rest2]]</span>
+<span id="cb2-151">      <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> [first2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> [<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">...</span>rest2]]</span>
+<span id="cb2-152">  }) </span>
+<span id="cb2-153">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> [[first<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> rest]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">...</span>other]</span>
+<span id="cb2-154">}</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<p>Above, we created a function to create all pairwise matches from an array. Using this, we can find all the locations of antinodes, since the new ones must be on the same plane as the existing antennae.</p>
+<p>Once we have our pairs, then we actually have to find the possible locations. Luckily for us, this is quite simple, since we can use the good ol’ slope formula to calculate the possible positions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" data-startfrom="164" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 163;"><span id="cb3-164"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">find_antinodes</span>(a<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> b<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> n) {</span>
+<span id="cb3-165">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// y2 - y1 / x2 - x1</span></span>
+<span id="cb3-166">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> slope <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [ a[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> b[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> a[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> b[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>] ]</span>
+<span id="cb3-167">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// return the new positions in both directions</span></span>
+<span id="cb3-168">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> [</span>
+<span id="cb3-169">      [ a[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> n<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>slope[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> a[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> n<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>slope[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>] ]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb3-170">      [ b[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> n<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>slope[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> b[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> n<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>slope[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>] ]</span>
+<span id="cb3-171">    ]</span>
+<span id="cb3-172">  }</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<p>With these in hand, the solution becomes fairly trivial; all we need to do now is iterate through our input Map to:</p>
+<ol type="1">
+<li>Get all the pairwise matches of antennae in each group</li>
+<li>Calculate the slope of each sub-pair</li>
+<li>Count all unique antinode locations</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" data-startfrom="184" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 183;"><span id="cb4-184">part_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {</span>
+<span id="cb4-185"></span>
+<span id="cb4-186">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> antinodes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []</span>
+<span id="cb4-187"></span>
+<span id="cb4-188">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// for each set</span></span>
+<span id="cb4-189">  input<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">antennae</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">forEach</span>(antenna_set <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> {</span>
+<span id="cb4-190">    antinodes<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">push</span>(</span>
+<span id="cb4-191">      <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// get all pairwise matches</span></span>
+<span id="cb4-192">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pairwise</span>(antenna_set<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">false</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">flatMap</span>(([ref<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> pair]) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> {</span>
+<span id="cb4-193">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> pair</span>
+<span id="cb4-194">            <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// get the possible locations for each pair</span></span>
+<span id="cb4-195">            <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">flatMap</span>(d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">find_antinodes</span>( </span>
+<span id="cb4-196">                [ref<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">row</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> ref<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> </span>
+<span id="cb4-197">                [d<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">row</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> d<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> </span>
+<span id="cb4-198">                <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> )</span>
+<span id="cb4-199">            )</span>
+<span id="cb4-200">          <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// remove any outside grid boundaries</span></span>
+<span id="cb4-201">      })<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(([row<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> col]) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> </span>
+<span id="cb4-202">                row <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;&amp;</span></span>
+<span id="cb4-203">                row <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span> input<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">nrow</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;&amp;</span></span>
+<span id="cb4-204">                col <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;&amp;</span></span>
+<span id="cb4-205">                col <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span> input<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ncol</span>            </span>
+<span id="cb4-206">      )</span>
+<span id="cb4-207">    )</span>
+<span id="cb4-208">  })</span>
+<span id="cb4-209"></span>
+<span id="cb4-210">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">new</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">Set</span>(</span>
+<span id="cb4-211">    antinodes</span>
+<span id="cb4-212">        <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">flat</span>()</span>
+<span id="cb4-213">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// combine coords with left shift and bitwise OR</span></span>
+<span id="cb4-214">        <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> d[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;&lt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|</span> d[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>])</span>
+<span id="cb4-215">    )<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size</span></span>
+<span id="cb4-216"></span>
+<span id="cb4-217">}</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="224" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 223;"><span id="cb5-224">part_1</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>⭐</p>
+</section>
+<section id="part-2" class="level3">
+<h3 class="anchored" data-anchor-id="part-2">Part 2</h3>
+<p>In part 2, the difference is that antinodes may be more than 1-step away from existing antennae. This makes it fairly easy, since we can just extend our functions from before to look at a longer range!</p>
+<p>With a quick tweak to <code>n</code> in our <code>find_antinodes()</code> function (by using number of rows we can be sure that we will exceed the bounds for each antennae set in both directions), we can easily cross this day off our list!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" data-startfrom="238" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 237;"><span id="cb6-238">part_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {</span>
+<span id="cb6-239">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> antinodes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []</span>
+<span id="cb6-240">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// get array of row count to iterate across as N</span></span>
+<span id="cb6-241">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> n_mults <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">Array</span>(input<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">nrow</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fill</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>((_<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> i) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> i<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb6-242">  </span>
+<span id="cb6-243">  input<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">antennae</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">forEach</span>(antenna_set <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> {</span>
+<span id="cb6-244">    antinodes<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">push</span>(</span>
+<span id="cb6-245">      <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// same as before</span></span>
+<span id="cb6-246">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pairwise</span>(antenna_set<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">false</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">flatMap</span>(([ref<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> pair]) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> {</span>
+<span id="cb6-247">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> n_mults<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">flatMap</span>(n <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> {</span>
+<span id="cb6-248">          <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// map across all N distances</span></span>
+<span id="cb6-249">          <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> pair<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">flatMap</span>(d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">find_antinodes</span>( [ref<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">row</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> ref<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> [d<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">row</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> d<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> n ))</span>
+<span id="cb6-250">        })</span>
+<span id="cb6-251">          <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// same filter as before to check boundaries</span></span>
+<span id="cb6-252">      })<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(([row<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> col]) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> </span>
+<span id="cb6-253">                  row <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;&amp;</span></span>
+<span id="cb6-254">                  row <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span> input<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">nrow</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;&amp;</span></span>
+<span id="cb6-255">                  col <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;&amp;</span></span>
+<span id="cb6-256">                  col <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span> input<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ncol</span>            </span>
+<span id="cb6-257">      )</span>
+<span id="cb6-258">    )</span>
+<span id="cb6-259">  })</span>
+<span id="cb6-260"></span>
+<span id="cb6-261">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// left shift and bitwise OR</span></span>
+<span id="cb6-262">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> all_antinode <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> antinodes<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">flat</span>()<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> d[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;&lt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|</span> d[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>])</span>
+<span id="cb6-263">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// do the same for antennae positions, since they count in this part</span></span>
+<span id="cb6-264">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> all_antennae <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">...</span>input<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">antennae</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">entries</span>()]</span>
+<span id="cb6-265">      <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> d[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>])</span>
+<span id="cb6-266">      <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">flat</span>()</span>
+<span id="cb6-267">      <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> d<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">row</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;&lt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|</span> d<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col</span>)</span>
+<span id="cb6-268"></span>
+<span id="cb6-269">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// count unique antinodes AND antennae</span></span>
+<span id="cb6-270">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">new</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">Set</span>( [ <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">...</span>all_antinode<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">...</span>all_antennae ] )<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size</span></span>
+<span id="cb6-271">}</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="278" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 277;"><span id="cb7-278">part_2</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-7" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>⭐</p>
+<hr>
+<p>Pretty fun day! I always enjoy a bit of regex, and some classic math to boot.</p>
+<p>I’m looking forward to catching up on a bunch of these AoC days, so stay tuned for more soon!</p>
+<p>-CH</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Advent of Code</category>
+  <category>OJS</category>
+  <category>R</category>
+  <guid>https://www.blog.connorhanan.com/posts/20250710-advent-of-code/</guid>
+  <pubDate>Thu, 10 Jul 2025 04:00:00 GMT</pubDate>
+</item>
 <item>
   <title>A Visualization About Nothing</title>
   <link>https://www.blog.connorhanan.com/posts/20250629-seinfeld-relationships/</link>
